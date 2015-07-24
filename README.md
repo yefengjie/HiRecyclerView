@@ -6,7 +6,9 @@ a recycler view include header view,footer view,loading view,empty view,error vi
 
 ### first
 add this init method below in your application
+
 DisplayInfo.init(getApplicationContext());
+
 
 #### second
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like MainActivity do...
