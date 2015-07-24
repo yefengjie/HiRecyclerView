@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_change_mode"
+        android:orderInCategory="100"
+        android:title="change mode"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_clear_data"
+        android:orderInCategory="100"
+        android:title="clear data"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_set_data"
+        android:orderInCategory="100"
+        android:title="set data"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_add_header"
+        android:orderInCategory="100"
+        android:title="add header"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_remove_header"
+        android:orderInCategory="100"
+        android:title="remove header"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_add_footer"
+        android:orderInCategory="100"
+        android:title="add footer"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_remove_footer"
+        android:orderInCategory="100"
+        android:title="remove footer"
+        app:showAsAction="never"/>
+</menu>
