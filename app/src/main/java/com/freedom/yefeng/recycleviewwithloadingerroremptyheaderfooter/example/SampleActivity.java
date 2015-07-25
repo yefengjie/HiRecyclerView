@@ -1,5 +1,7 @@
 package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.example;
 
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -39,6 +41,7 @@ public class SampleActivity extends AppCompatActivity {
     private int mVisibleItemCount, mTotalItemCount, mFirstVisibleItemPosition;
     private int mTotalDataCount = 100;
     private int mCurrentPage = 1;
+    private Drawable mDivider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,27 @@ public class SampleActivity extends AppCompatActivity {
                 mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
                 if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
                     loadMore();
+                }
+            }
+        });
+        mDivider = getResources().getDrawable(R.drawable.divider_horizontal_bright_opaque);
+        mRecycler.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                int left = parent.getPaddingLeft();
+                int right = parent.getWidth() - parent.getPaddingRight();
+
+                int childCount = parent.getChildCount();
+                for (int i = 0; i < childCount; i++) {
+                    View child = parent.getChildAt(i);
+
+                    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+
+                    int top = child.getBottom() + params.bottomMargin;
+                    int bottom = top + mDivider.getIntrinsicHeight();
+
+                    mDivider.setBounds(left, top, right, bottom);
+                    mDivider.draw(c);
                 }
             }
         });
