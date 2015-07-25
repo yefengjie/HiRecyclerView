@@ -15,6 +15,7 @@ a economic recycler view with functions list below:
 
 7.error display
 
+8.divider
 
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/1.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/3.png)
@@ -22,7 +23,7 @@ a economic recycler view with functions list below:
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/5.png)
 
 ## Change Log
-#### 15-2-15  add auto load more method
+#### 15-2-15  add auto load more method.  add list divider
 
 ## How To Use
 
