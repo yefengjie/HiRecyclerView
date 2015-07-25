@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by yefeng on 7/24/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * this is a recycler view adapter with empty view, loading view,data view,header view,footer view
  * if you want to enable each views, you should Override each onCreateViewHolder method and onBindViewHolder method
  */

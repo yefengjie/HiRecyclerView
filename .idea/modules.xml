@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/YfRecyclerView.iml" filepath="$PROJECT_DIR$/YfRecyclerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecycleViewWithLoadingErrorEmptyHeaderFooter.iml" filepath="$PROJECT_DIR$/RecycleViewWithLoadingErrorEmptyHeaderFooter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
