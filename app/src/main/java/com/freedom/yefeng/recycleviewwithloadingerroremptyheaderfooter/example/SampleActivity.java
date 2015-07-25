@@ -95,7 +95,7 @@ public class SampleActivity extends AppCompatActivity {
     }
 
     private void loadMore() {
-        if (mAdapter.getData().size() < mTotalDataCount) {
+        if (mAdapter.getData().size() < mTotalDataCount && mAdapter.getData().size() > 0) {
             mCurrentPage++;
             ArrayList<String> moreData = new ArrayList<String>();
             for (int i = 0; i < 20; i++) {
