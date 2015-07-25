@@ -24,7 +24,7 @@ import com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.libs.Simp
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
-public class MainActivity extends AppCompatActivity {
+public class SampleActivity extends AppCompatActivity {
 
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mSwipeLayout;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sample);
 
         for (int i = 0; i < 20; i++) {
             mData.add("item  " + i);
