@@ -76,15 +76,24 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         this.notifyDataSetChanged();
     }
 
+    public void addData(ArrayList<T> data) {
+        if (null == data || data.isEmpty()) {
+            return;
+        }
+        int startPosition = mData.size() + mHeaders.size();
+        this.mData.addAll(data);
+        this.notifyItemRangeInserted(startPosition, data.size());
+    }
+
     public ArrayList<T> getData() {
         return mData;
     }
 
-    public ArrayList<T> getHeaders(){
+    public ArrayList<T> getHeaders() {
         return mHeaders;
     }
 
-    public ArrayList<T> getFooters(){
+    public ArrayList<T> getFooters() {
         return mFooters;
     }
 

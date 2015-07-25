@@ -28,21 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mSwipeLayout;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
     private RecyclerViewAdapter mAdapter;
-    private Toolbar mToolbar;
     ArrayList<String> mData = new ArrayList<String>();
 
     private int h = 0;
     private int f = 0;
     private int mode = RecyclerViewMode.MODE_DATA;
 
+    private int mVisibleItemCount, mTotalItemCount, mFirstVisibleItemPosition;
+    private int mTotalDataCount = 100;
+    private int mCurrentPage = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 20; i++) {
             mData.add("item  " + i);
         }
 
@@ -64,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mRecycler = (RecyclerView) findViewById(R.id.recycler);
         mRecycler.setHasFixedSize(true);
@@ -74,6 +77,33 @@ public class MainActivity extends AppCompatActivity {
 
         initAdapter();
         mRecycler.setAdapter(mAdapter);
+        mRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (null == mLayoutManager || null == mAdapter) {
+                    return;
+                }
+                mVisibleItemCount = mLayoutManager.getChildCount();
+                mTotalItemCount = mLayoutManager.getItemCount();
+                mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
+                if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
+                    loadMore();
+                }
+            }
+        });
+    }
+
+    private void loadMore() {
+        if (mAdapter.getData().size() < mTotalDataCount) {
+            mCurrentPage++;
+            ArrayList<String> moreData = new ArrayList<String>();
+            for (int i = 0; i < 20; i++) {
+                moreData.add("item  " + (20 * (mCurrentPage - 1) + i));
+            }
+            mAdapter.addData(moreData);
+            showToast("load more. current page is " + mCurrentPage);
+        }
     }
 
     private void initAdapter() {
@@ -86,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText(MainActivity.this.mData.get(position));
-                holder.itemView.setTag(MainActivity.this.mData.get(position));
+                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position) + " page is " + mCurrentPage);
+                holder.itemView.setTag(mData.get(position));
             }
 
             @Override
@@ -219,9 +249,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.action_clear_data:
+                mCurrentPage = 1;
                 mAdapter.setData(null);
                 return true;
             case R.id.action_set_data:
+                mCurrentPage = 1;
+                mData.clear();
+                for (int i = 0; i < 20; i++) {
+                    mData.add("item  " + i);
+                }
                 mAdapter.setData(mData);
                 return true;
 
