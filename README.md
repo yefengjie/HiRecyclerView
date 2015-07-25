@@ -1,12 +1,20 @@
 # YfRecyclerView
 a economic recycler view with functions list below:
+
 1.add header view
+
 2.add footer view
+
 3.auto load more
+
 4.pull to refresh
+
 5.empty display
+
 6.loading display
+
 7.error display
+
 
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/1.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/3.png)
