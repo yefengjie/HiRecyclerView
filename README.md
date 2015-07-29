@@ -24,11 +24,42 @@ a economic recycler view with functions list below:
 ### first
 add this init method below in your application
 
+```Java
 DisplayInfo.init(getApplicationContext());
+```
 
 
 #### second
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
+
+```Java
+mAdapter = new RecyclerViewAdapter(mData) {
+            @Override
+            public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
+                return new SimpleViewHolder(view);
+            }
+
+            @Override
+            public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
+                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position) + " page is " + mCurrentPage);
+                holder.itemView.setTag(mData.get(position));
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
+                return new SimpleViewHolder(view);
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateLoadingViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_loading_material, parent, false);
+                return new SimpleViewHolder(view);
+            }
+        };
+mRecycler.setAdapter(mAdapter);
+```
 
 
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/6.png)
