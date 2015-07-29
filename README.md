@@ -19,6 +19,18 @@ a economic recycler view with functions list below:
 
 9.add recycler view inside recycler view demo
 
+## How To Use
+
+### first
+add this init method below in your application
+
+DisplayInfo.init(getApplicationContext());
+
+
+#### second
+new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
+
+
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/6.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/1.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/3.png)
@@ -30,13 +42,3 @@ a economic recycler view with functions list below:
 
 #### 15-8-28  add recyler view inside recycler view demo
 
-## How To Use
-
-### first
-add this init method below in your application
-
-DisplayInfo.init(getApplicationContext());
-
-
-#### second
-new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
