@@ -17,13 +17,17 @@ a economic recycler view with functions list below:
 
 8.divider
 
+9.add recycler view inside recycler view demo
+
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/1.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/3.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/4.png)
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/5.png)
 
 ## Change Log
-#### 15-2-15  add auto load more method.  add list divider
+#### 15-8-25  add auto load more method.  add list divider
+
+#### 15-8-28  add recyler view inside recycler view demo
 
 ## How To Use
 
