@@ -29,7 +29,7 @@ DisplayInfo.init(getApplicationContext());
 ```
 
 
-#### second
+### second
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
 
 ```Java
@@ -59,6 +59,75 @@ mAdapter = new RecyclerViewAdapter(mData) {
             }
         };
 mRecycler.setAdapter(mAdapter);
+```
+
+### how to use recycler view inside recycler view
+
+use ExpansionLinearLayoutManager to replace LinearLayoutManager
+
+```Java
+ExpansionLinearLayoutManager layoutManager = new ExpansionLinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+recyclerView.setLayoutManager(layoutManager);
+```
+
+### change display mode(show loading data,show data,show empty,show error)
+
+show data.if data is empty, empty view will display.
+
+```Java
+mAdapter.setData(mData);
+```
+
+show loading
+
+```Java
+mAdapter.changeMode(RecyclerViewMode.MODE_LOADING);
+```
+
+show error
+
+```Java
+mAdapter.changeMode(RecyclerViewMode.MODE_ERROR)
+```
+
+### add header or footer
+
+override onCreateHeaderViewHolder and onBindHeaderViewHolder or onCreateFooterViewHolder and onBindFooterViewHolder method
+
+```Java
+            @Override
+            public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_header1, parent, false);
+                return new SimpleViewHolder(view);
+            }
+
+            @Override
+            public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
+                ((TextView) holder.itemView.findViewById(R.id.tv_header)).setText(mAdapter.getHeaders().get(position).toString());
+                holder.itemView.setTag(mAdapter.getHeaders().get(position).toString());
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateFooterViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_footer1, parent, false);
+                return new SimpleViewHolder(view);
+            }
+
+            @Override
+            public void onBindFooterViewHolder(RecyclerView.ViewHolder holder, int position) {
+                ((TextView) holder.itemView.findViewById(R.id.tv_footer)).setText(mAdapter.getFooters().get(position).toString());
+                holder.itemView.setTag(mAdapter.getFooters().get(position).toString());
+            }
+```
+
+call adapter's addHeader or addFooter method
+!!! make sure your adapter is in RecyclerViewMode.MODE_DATA
+
+```Java
+ mAdapter.addHeader("header 1");
+ mAdapter.removeHeader(header);
+ mAdapter.addFooter("footer 1");
+ mAdapter.removeFooter(footer);
 ```
 
 
