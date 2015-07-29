@@ -1,8 +1,8 @@
-package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.example.base;
+package com.freedom.yefeng.yfrecyclerview.example.base;
 
 import android.app.Application;
 
-import com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.libs.DisplayInfo;
+import com.freedom.yefeng.yfrecyclerview.libs.DisplayInfo;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.example;
+package com.freedom.yefeng.yfrecyclerview.example;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -11,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.R;
-import com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.libs.RecyclerViewAdapter;
-import com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.libs.SimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.R;
+import com.freedom.yefeng.yfrecyclerview.libs.ExpansionLinearLayoutManager;
+import com.freedom.yefeng.yfrecyclerview.libs.RecyclerViewAdapter;
+import com.freedom.yefeng.yfrecyclerview.libs.SimpleViewHolder;
 
 import java.util.ArrayList;
 

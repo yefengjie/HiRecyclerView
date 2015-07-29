@@ -1,11 +1,11 @@
-package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.example;
+package com.freedom.yefeng.yfrecyclerview.example;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.R;
+import com.freedom.yefeng.yfrecyclerview.R;
 
 public class MenuActivity extends AppCompatActivity {
 

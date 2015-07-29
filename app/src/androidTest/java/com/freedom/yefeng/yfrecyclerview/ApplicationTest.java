@@ -1,4 +1,4 @@
-package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter;
+package com.freedom.yefeng.yfrecyclerview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

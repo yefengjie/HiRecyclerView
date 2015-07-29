@@ -1,4 +1,4 @@
-package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.libs;
+package com.freedom.yefeng.yfrecyclerview.libs;
 
 /**
  * Created by yefeng on 7/24/15.

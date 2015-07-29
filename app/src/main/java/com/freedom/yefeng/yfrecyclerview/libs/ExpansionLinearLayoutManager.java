@@ -1,4 +1,4 @@
-package com.freedom.yefeng.recycleviewwithloadingerroremptyheaderfooter.example;
+package com.freedom.yefeng.yfrecyclerview.libs;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
