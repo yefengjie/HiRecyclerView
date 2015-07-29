@@ -37,6 +37,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     /**
      * tool bar height
      */
+    //because our toobar is ThemeOverlay, so we should minus toolbar height
     protected int mToolBarHeight;
 
     private RecyclerViewInterface.OnItemClickListener mOnItemClickListener;
@@ -114,6 +115,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == RecyclerViewMode.MODE_LOADING) {
             RecyclerView.ViewHolder loadingViewHolder = onCreateLoadingViewHolder(parent);
+            //because our toobar is ThemeOverlay, so we should minus toolbar height
             loadingViewHolder.itemView.setLayoutParams(
                     new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.getHeight() - mToolBarHeight)
             );
@@ -121,6 +123,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         }
         if (viewType == RecyclerViewMode.MODE_ERROR) {
             RecyclerView.ViewHolder errorViewHolder = onCreateErrorViewHolder(parent);
+            //because our toobar is ThemeOverlay, so we should minus toolbar height
             errorViewHolder.itemView.setLayoutParams(
                     new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.getHeight() - mToolBarHeight)
             );
@@ -141,6 +144,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         }
         if (viewType == RecyclerViewMode.MODE_EMPTY) {
             RecyclerView.ViewHolder emptyViewHolder = onCreateEmptyViewHolder(parent);
+            //because our toobar is ThemeOverlay, so we should minus toolbar height
             emptyViewHolder.itemView.setLayoutParams(
                     new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.getHeight() - mToolBarHeight)
             );
