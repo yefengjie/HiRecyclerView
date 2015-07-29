@@ -121,6 +121,7 @@ override onCreateHeaderViewHolder and onBindHeaderViewHolder or onCreateFooterVi
 ```
 
 call adapter's addHeader or addFooter method
+
 !!! make sure your adapter is in RecyclerViewMode.MODE_DATA
 
 ```Java
