@@ -36,7 +36,8 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     /**
      * tool bar height
      */
-    //because our toobar is ThemeOverlay, so we should minus toolbar height
+    //because our toobar is ThemeOverlay, so we should minus toolbar height,
+    //you can use AppBarLayout.getMeasuredHeight method to get toobar height.
     protected int mToolBarHeight;
 
     private RecyclerViewInterface.OnItemClickListener mOnItemClickListener;
