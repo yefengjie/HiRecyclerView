@@ -31,13 +31,7 @@ or see it in maven :https://bintray.com/yefengfreedom/maven/YfRecyclerView/view
    compile 'com.freedom.yefeng:yfrecyclerview:0.1'
 ```
 
-add maven to your repositories
 
-```Java
-      maven{
-            url 'https://dl.bintray.com/yefengfreedom/maven'
-        }
-```
 
 ### sencond
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
