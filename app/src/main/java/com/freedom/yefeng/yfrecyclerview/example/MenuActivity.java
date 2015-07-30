@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.freedom.yefeng.yfrecyclerview.R;
-
 public class MenuActivity extends AppCompatActivity {
 
     @Override

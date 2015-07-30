@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.freedom.yefeng.yfrecyclerview"
+        applicationId "com.freedom.yefeng.yfrecyclerview.example"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
@@ -27,5 +27,5 @@ dependencies {
     compile 'com.android.support:palette-v7:22.2.0'
     compile 'com.android.support:design:22.2.0'
     compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.freedom.yefeng:yfrecyclerview:0.0.1'
+    compile 'com.freedom.yefeng:yfrecyclerview:0.1'
 }
