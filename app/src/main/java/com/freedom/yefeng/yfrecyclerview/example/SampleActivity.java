@@ -18,10 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.freedom.yefeng.yfrecyclerview.R;
-import com.freedom.yefeng.yfrecyclerview.libs.RecyclerViewAdapter;
-import com.freedom.yefeng.yfrecyclerview.libs.RecyclerViewInterface;
-import com.freedom.yefeng.yfrecyclerview.libs.RecyclerViewMode;
-import com.freedom.yefeng.yfrecyclerview.libs.SimpleViewHolder;
+import com.geek.logistics.yfrecyclerview.RecyclerViewAdapter;
+import com.geek.logistics.yfrecyclerview.RecyclerViewInterface;
+import com.geek.logistics.yfrecyclerview.RecyclerViewMode;
+import com.geek.logistics.yfrecyclerview.SimpleViewHolder;
 
 import java.util.ArrayList;
 

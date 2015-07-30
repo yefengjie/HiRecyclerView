@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.freedom.yefeng.yfrecyclerview.R;
-import com.freedom.yefeng.yfrecyclerview.libs.ExpansionLinearLayoutManager;
-import com.freedom.yefeng.yfrecyclerview.libs.RecyclerViewAdapter;
-import com.freedom.yefeng.yfrecyclerview.libs.SimpleViewHolder;
+import com.geek.logistics.yfrecyclerview.ExpansionLinearLayoutManager;
+import com.geek.logistics.yfrecyclerview.RecyclerViewAdapter;
+import com.geek.logistics.yfrecyclerview.SimpleViewHolder;
 
 import java.util.ArrayList;
 

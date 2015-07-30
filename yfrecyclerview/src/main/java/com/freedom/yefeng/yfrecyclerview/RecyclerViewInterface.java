@@ -1,4 +1,4 @@
-package com.freedom.yefeng.yfrecyclerview.libs;
+package com.freedom.yefeng.yfrecyclerview;
 
 import android.view.View;
 

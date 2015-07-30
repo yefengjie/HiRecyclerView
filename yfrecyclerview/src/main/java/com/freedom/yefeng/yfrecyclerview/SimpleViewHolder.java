@@ -1,4 +1,4 @@
-package com.geek.logistics.yfrecyclerview;
+package com.freedom.yefeng.yfrecyclerview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.geek.logistics.yfrecyclerview;
+package com.freedom.yefeng.yfrecyclerview;
 
 /**
  * Created by yefeng on 7/24/15.
