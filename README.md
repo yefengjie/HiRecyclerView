@@ -31,20 +31,7 @@ or see it in maven :https://bintray.com/yefengfreedom/maven/YfRecyclerView/view
    compile 'com.freedom.yefeng:yfrecyclerview:0.1'
 ```
 
-```Java
-DisplayInfo.init(getApplicationContext());
-```
-
-
 ### sencond
-add this init method below in your application
-
-```Java
-DisplayInfo.init(getApplicationContext());
-```
-
-
-### third
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
 
 ```Java
