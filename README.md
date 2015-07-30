@@ -22,14 +22,24 @@ a economic recycler view with functions list below:
 ## How To Use
 
 ### first
-add this init method below in your application
+
+include libs in your build.gradle
+
+or see it in maven :https://bintray.com/yefengfreedom/maven/YfRecyclerView/view
 
 ```Java
-DisplayInfo.init(getApplicationContext());
+   compile 'com.freedom.yefeng:yfrecyclerview:0.1'
 ```
 
+add maven to your repositories
 
-### second
+```Java
+      maven{
+            url 'https://dl.bintray.com/yefengfreedom/maven'
+        }
+```
+
+### sencond
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
 
 ```Java
@@ -142,4 +152,6 @@ call adapter's addHeader or addFooter method
 #### 15-8-25  add auto load more method.  add list divider
 
 #### 15-8-28  add recyler view inside recycler view demo
+
+#### 15-8-30  upload to maven center
 
