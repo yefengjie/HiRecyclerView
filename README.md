@@ -31,6 +31,14 @@ or see it in maven :https://bintray.com/yefengfreedom/maven/YfRecyclerView/view
    compile 'com.freedom.yefeng:yfrecyclerview:0.1'
 ```
 
+add maven to your repositories
+
+```Java
+      maven{
+            url 'https://dl.bintray.com/yefengfreedom/maven'
+        }
+```
+
 ### sencond
 new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
 
@@ -144,4 +152,6 @@ call adapter's addHeader or addFooter method
 #### 15-8-25  add auto load more method.  add list divider
 
 #### 15-8-28  add recyler view inside recycler view demo
+
+#### 15-8-30  upload to maven center
 
