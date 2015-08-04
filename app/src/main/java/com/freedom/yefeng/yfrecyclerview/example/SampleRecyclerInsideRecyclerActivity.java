@@ -85,6 +85,12 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
                 showRecycler(recyclerView);
                 holder.itemView.setTag(mData.get(position));
             }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
+                return new SimpleViewHolder(view);
+            }
         };
     }
 
@@ -103,6 +109,12 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
             public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
                 ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) data.get(position));
                 holder.itemView.setTag(mData.get(position));
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
+                return new SimpleViewHolder(view);
             }
         };
         recyclerView.setAdapter(adapter);

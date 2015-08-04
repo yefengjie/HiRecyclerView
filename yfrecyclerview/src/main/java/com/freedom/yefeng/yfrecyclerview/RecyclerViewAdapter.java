@@ -291,9 +291,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         return null;
     }
 
-    public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
-        return null;
-    }
+    public abstract RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent);
 
     public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
         return null;
