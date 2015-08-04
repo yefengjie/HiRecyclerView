@@ -139,6 +139,8 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
+                //// TODO: 8/4/15 we should find views or add views listener in onCreateDataViewHolder,
+                //// TODO: so we need to define ViewHolder by ourselves, instead of using SimpleViewHolder.
                 ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position) + " page is " + mCurrentPage);
                 holder.itemView.setTag(mData.get(position));
             }

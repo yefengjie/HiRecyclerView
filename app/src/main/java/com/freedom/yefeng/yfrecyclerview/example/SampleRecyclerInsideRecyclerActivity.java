@@ -80,6 +80,7 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
 
             @Override
             public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
+                //// TODO: 8/4/15 we should find views or add views listener in onCreateDataViewHolder
                 ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position));
                 RecyclerView recyclerView = (RecyclerView) holder.itemView.findViewById(R.id.recycler);
                 showRecycler(recyclerView);
@@ -107,6 +108,7 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
 
             @Override
             public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
+                //// TODO: 8/4/15 we should find views or add views listener in onCreateDataViewHolder
                 ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) data.get(position));
                 holder.itemView.setTag(mData.get(position));
             }
