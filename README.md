@@ -143,9 +143,11 @@ call adapter's addHeader or addFooter method
 ![alt tag](https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/5.png)
 
 ## Change Log
-#### 15-8-25  add auto load more method.  add list divider
+#### 15-7-25  add auto load more method.  add list divider
 
-#### 15-8-28  add recyler view inside recycler view demo
+#### 15-7-28  add recycler view inside recycler view demo
 
-#### 15-8-30  upload to maven center
+#### 15-7-30  upload to maven center
+
+#### 15-8-5   add recycler view adapter demo
 
