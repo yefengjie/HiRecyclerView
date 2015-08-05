@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.freedom.yefeng.yfrecyclerview.example"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="com.freedom.yefeng.yfrecyclerview.example"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name="com.freedom.yefeng.yfrecyclerview.example.base.AppApplication"
@@ -10,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.freedom.yefeng.yfrecyclerview.example.SampleRecyclerInsideRecyclerActivity"/>
         <activity android:name="com.freedom.yefeng.yfrecyclerview.example.SampleActivity"/>
+        <activity android:name="com.freedom.yefeng.yfrecyclerview.example.SampleAdapterDemoActivity"/>
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.MenuActivity"
             android:icon="@mipmap/ic_launcher"

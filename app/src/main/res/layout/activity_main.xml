@@ -28,4 +28,14 @@
         android:text="recycler view inside recycler view"
         android:textColor="#FFFFFF"/>
 
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/accent"
+        android:gravity="center"
+        android:text="recycler adapter demo"
+        android:textColor="#FFFFFF"/>
+
 </LinearLayout>
