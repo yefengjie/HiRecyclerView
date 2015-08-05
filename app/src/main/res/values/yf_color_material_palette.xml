@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yf_white">#FFFFFF</color>
+    <color name="yf_black">#000000</color>
+    <color name="yf_primary_text">#212121</color>
+    <color name="yf_secondary_text">#727272</color>
+    <color name="yf_divider">#B6B6B6</color>
+    <color name="yf_hint_text">#43000000</color>
+    <color name="yf_white_background">#FFEEEEEE</color>
+    <color name="yf_transparent_half">#77FFFFFF</color>
+    <color name="yf_transparent">#00000000</color>
+    <color name="yf_transparent_half_black">#88000000</color>
+
+    <!-- red -->
+    <color name="yf_red_primary_dark">#D32F2F</color>
+    <color name="yf_red_primary">#F44336</color>
+    <color name="yf_red_primary_light">#FFCDD2</color>
+    <color name="yf_red_accent">#FF5252</color>
+
+    <!-- pink -->
+    <color name="yf_pink_primary_dark">#C2185B</color>
+    <color name="yf_pink_primary">#E91E63</color>
+    <color name="yf_pink_primary_light">#F8BBD0</color>
+    <color name="yf_pink_accent">#FF4081</color>
+
+    <!-- purple -->
+    <color name="yf_purple_primary_dark">#7B1FA2</color>
+    <color name="yf_purple_primary">#9C27B0</color>
+    <color name="yf_purple_primary_light">#E1BEE7</color>
+    <color name="yf_purple_accent">#E040FB</color>
+
+    <!-- deep purple -->
+    <color name="yf_deep_purple_primary_dark">#512DA8</color>
+    <color name="yf_deep_purple_primary">#673AB7</color>
+    <color name="yf_deep_purple_primary_light">#D1C4E9</color>
+    <color name="yf_deep_purple_accent">#7C4DFF</color>
+
+    <!-- indigo -->
+    <color name="yf_indigo_primary_dark">#303F9F</color>
+    <color name="yf_indigo_primary">#3F51B5</color>
+    <color name="yf_indigo_primary_light">#C5CAE9</color>
+    <color name="yf_indigo_accent">#536DFE</color>
+
+    <!-- blue -->
+    <color name="yf_blue_primary_dark">#1976D2</color>
+    <color name="yf_blue_primary">#2196F3</color>
+    <color name="yf_blue_primary_light">#BBDEFB</color>
+    <color name="yf_blue_accent">#448AFF</color>
+
+    <!-- light blue -->
+    <color name="yf_light_blue_primary_dark">#0288D1</color>
+    <color name="yf_light_blue_primary">#03A9F4</color>
+    <color name="yf_light_blue_primary_light">#B3E5FC</color>
+    <color name="yf_light_blue_accent">#03A9F4</color>
+
+    <!-- cyan -->
+    <color name="yf_cyan_primary_dark">#0097A7</color>
+    <color name="yf_cyan_primary">#00BCD4</color>
+    <color name="yf_cyan_primary_light">#B2EBF2</color>
+    <color name="yf_cyan_accent">#00BCD4</color>
+
+    <!-- teal -->
+    <color name="yf_teal_primary_dark">#00796B</color>
+    <color name="yf_teal_primary">#009688</color>
+    <color name="yf_teal_primary_light">#B2DFDB</color>
+    <color name="yf_teal_accent">#009688</color>
+
+    <!-- green -->
+    <color name="yf_green_primary_dark">#388E3C</color>
+    <color name="yf_green_primary">#4CAF50</color>
+    <color name="yf_green_primary_light">#C8E6C9</color>
+    <color name="yf_green_accent">#4CAF50</color>
+
+    <!-- light green -->
+    <color name="yf_light_green_primary_dark">#689F38</color>
+    <color name="yf_light_green_primary">#8BC34A</color>
+    <color name="yf_light_green_primary_light">#DCEDC8</color>
+    <color name="yf_light_green_accent">#8BC34A</color>
+
+    <!-- lime -->
+    <color name="yf_lime_primary_dark">#AFB42B</color>
+    <color name="yf_lime_primary">#CDDC39</color>
+    <color name="yf_lime_primary_light">#F0F4C3</color>
+    <color name="yf_lime_accent">#CDDC39</color>
+
+    <!-- yellow -->
+    <color name="yf_yellow_primary_dark">#FBC02D</color>
+    <color name="yf_yellow_primary">#FFEB3B</color>
+    <color name="yf_yellow_primary_light">#FFF9C4</color>
+    <color name="yf_yellow_accent">#FFEB3B</color>
+
+    <!-- amber -->
+    <color name="yf_amber_primary_dark">#FFA000</color>
+    <color name="yf_amber_primary">#FFC107</color>
+    <color name="yf_amber_primary_light">#FFECB3</color>
+    <color name="yf_amber_accent">#FFC107</color>
+
+    <!-- orange -->
+    <color name="yf_orange_primary_dark">#F57C00</color>
+    <color name="yf_orange_primary">#FF9800</color>
+    <color name="yf_orange_primary_light">#FFE0B2</color>
+    <color name="yf_orange_accent">#FF9800</color>
+
+    <!-- deep orange -->
+    <color name="yf_deep_orange_primary_dark">#E64A19</color>
+    <color name="yf_deep_orange_primary">#FF5722</color>
+    <color name="yf_deep_orange_primary_light">#FFCCBC</color>
+    <color name="yf_deep_orange_accent">#FF5722</color>
+
+    <!-- brown -->
+    <color name="yf_brown_primary_dark">#5D4037</color>
+    <color name="yf_brown_primary">#795548</color>
+    <color name="yf_brown_primary_light">#D7CCC8</color>
+    <color name="yf_brown_accent">#795548</color>
+
+    <!-- grey -->
+    <color name="yf_grey_primary_dark">#616161</color>
+    <color name="yf_grey_primary">#9E9E9E</color>
+    <color name="yf_grey_primary_light">#F5F5F5</color>
+    <color name="yf_grey_accent">#9E9E9E</color>
+
+    <!-- blue grey -->
+    <color name="yf_blue_grey_primary_dark">#455A64</color>
+    <color name="yf_blue_grey_primary">#607D8B</color>
+    <color name="yf_blue_grey_primary_light">#CFD8DC</color>
+    <color name="yf_blue_grey_accent">#607D8B</color>
+</resources>

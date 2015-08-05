@@ -1,0 +1,37 @@
+<resources>
+    <!-- default item size -->
+    <dimen name="default_img_size">96dp</dimen>
+    <dimen name="default_ui_size">48dp</dimen>
+    <dimen name="default_ui_size_half">24dp</dimen>
+
+    <dimen name="default_ui_margin_very_small">2dp</dimen>
+    <dimen name="default_ui_margin_small">4dp</dimen>
+    <dimen name="default_ui_margin">8dp</dimen>
+    <dimen name="default_ui_margin_large">16dp</dimen>
+    <dimen name="default_ui_margin_huge">32dp</dimen>
+
+    <dimen name="default_button_height">36dp</dimen>
+    <dimen name="default_button_margin_vertical">6dp</dimen>
+    <dimen name="default_button_margin_horizontal">8dp</dimen>
+    <dimen name="default_button_padding_horizontal">8dp</dimen>
+    <dimen name="default_button_height_min_width">64dp</dimen>
+    <dimen name="default_button_margin_content">24dp</dimen>
+
+    <dimen name="default_icon_small_size">24dp</dimen>
+    <dimen name="default_icon_small_margin">12dp</dimen>
+    <dimen name="default_icon_size">40dp</dimen>
+    <dimen name="default_icon_margin">4dp</dimen>
+
+    <dimen name="default_text_input_margin_vertical">16dp</dimen>
+    <dimen name="default_text_input_divider_padding">8dp</dimen>
+
+    <!--Font and color:-->
+
+    <!--Text: Roboto Regular 16sp,  #000 87%-->
+    <!--Title (optional): Roboto Regular 16sp, #000 54%-->
+    <!--Default bottom sheet background fill: #FFF-->
+    <!--Overlay shield fill: #000 20%-->
+    <dimen name="default_specs_horizontal_margin">16dp</dimen>
+    <dimen name="default_specs_icon_text_margin">32dp</dimen>
+    <dimen name="default_specs_icon_size">24dp</dimen>
+</resources>
