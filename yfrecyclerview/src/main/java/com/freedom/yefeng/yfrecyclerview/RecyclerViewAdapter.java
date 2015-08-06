@@ -24,11 +24,11 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     /**
      * headers
      */
-    public ArrayList<T> mHeaders;
+    public ArrayList<Object> mHeaders;
     /**
      * footers
      */
-    public ArrayList<T> mFooters;
+    public ArrayList<Object> mFooters;
     /**
      * recycler view mode
      */
@@ -60,10 +60,10 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         this(data, null, null, mode, toolBarHeight);
     }
 
-    public RecyclerViewAdapter(ArrayList<T> data, ArrayList<T> headers, ArrayList<T> footers, int mode, int toolBarHeight) {
+    public RecyclerViewAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
         this.mData = null == data ? new ArrayList<T>() : data;
-        this.mHeaders = null == headers ? new ArrayList<T>() : headers;
-        this.mFooters = null == footers ? new ArrayList<T>() : footers;
+        this.mHeaders = null == headers ? new ArrayList<Object>() : headers;
+        this.mFooters = null == footers ? new ArrayList<Object>() : footers;
         this.mMode = mData.isEmpty() ? RecyclerViewMode.MODE_EMPTY : mode;
         this.mToolBarHeight = toolBarHeight;
     }
@@ -91,11 +91,11 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         return mData;
     }
 
-    public ArrayList<T> getHeaders() {
+    public ArrayList<Object> getHeaders() {
         return mHeaders;
     }
 
-    public ArrayList<T> getFooters() {
+    public ArrayList<Object> getFooters() {
         return mFooters;
     }
 
@@ -362,7 +362,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      *
      * @param header header
      */
-    public void addHeader(T header) {
+    public void addHeader(Object header) {
         if (mMode != RecyclerViewMode.MODE_DATA) {
             Log.e("Recycler View Adapter", "error: you can not add header or footer while you are not in data mode");
             return;
@@ -379,7 +379,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      *
      * @param header header
      */
-    public void removeHeader(T header) {
+    public void removeHeader(Object header) {
         if (mHeaders.contains(header)) {
             //animate
             notifyItemRemoved(mHeaders.indexOf(header));
@@ -414,7 +414,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      *
      * @param footer footer
      */
-    public void addFooter(T footer) {
+    public void addFooter(Object footer) {
         if (mMode != RecyclerViewMode.MODE_DATA) {
             Log.e("Recycler View Adapter", "error: you can not add header or footer while you are not in data mode");
             return;
@@ -431,7 +431,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      *
      * @param footer footer view
      */
-    public void removeFooter(T footer) {
+    public void removeFooter(Object footer) {
         if (mFooters.contains(footer)) {
             //animate
             notifyItemRemoved(mHeaders.size() + mData.size() + mFooters.indexOf(footer));
