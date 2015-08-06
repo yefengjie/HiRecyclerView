@@ -28,7 +28,7 @@ include libs in your build.gradle
 or see it in maven :https://bintray.com/yefengfreedom/maven/YfRecyclerView/view
 
 ```Java
-   compile 'com.freedom.yefeng:yfrecyclerview:0.1.2'
+   compile 'com.freedom.yefeng:yfrecyclerview:0.1.3'
 ```
 
 
