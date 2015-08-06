@@ -381,9 +381,10 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeHeader(Object header) {
         if (mHeaders.contains(header)) {
+            int position = mHeaders.indexOf(header);
+            mHeaders.remove(position);
             //animate
-            notifyItemRemoved(mHeaders.indexOf(header));
-            mHeaders.remove(header);
+            notifyItemRemoved(position);
         }
     }
 
@@ -394,8 +395,8 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeHeader(int position) {
         if (mHeaders.size() > 0 && position < mHeaders.size()) {
-            notifyItemRemoved(position);
             mHeaders.remove(position);
+            notifyItemRemoved(position);
         }
     }
 
@@ -434,9 +435,10 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeFooter(Object footer) {
         if (mFooters.contains(footer)) {
+            int position = mFooters.indexOf(footer);
+            mFooters.remove(position);
             //animate
-            notifyItemRemoved(mHeaders.size() + mData.size() + mFooters.indexOf(footer));
-            mFooters.remove(footer);
+            notifyItemRemoved(mHeaders.size() + mData.size() + position);
         }
     }
 
@@ -447,9 +449,9 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeFooter(int position) {
         if (mFooters.size() > 0 && position < mFooters.size()) {
+            mFooters.remove(position);
             //animate
             notifyItemRemoved(mHeaders.size() + mData.size() + position);
-            mFooters.remove(position);
         }
     }
 
