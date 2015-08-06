@@ -7,12 +7,18 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.freedom.yefeng.yfrecyclerview.RecyclerViewInterface;
+import com.freedom.yefeng.yfrecyclerview.example.adapter.MenuAdapter;
 import com.freedom.yefeng.yfrecyclerview.example.base.AppInfo;
+
+import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -20,6 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     Toolbar mTb;
     CollapsingToolbarLayout mCtl;
     CoordinatorLayout mCl;
+    RecyclerView mRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         mTb = (Toolbar) findViewById(R.id.tb);
         mCtl = (CollapsingToolbarLayout) findViewById(R.id.ctl);
         mCl = (CoordinatorLayout) findViewById(R.id.cl);
+        mRv = (RecyclerView) findViewById(R.id.rv);
         initToolbar();
         init();
     }
@@ -49,22 +57,25 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void init() {
-        findViewById(R.id.btn_1).setOnClickListener(new View.OnClickListener() {
+        ArrayList<String> actions = new ArrayList<String>();
+        actions.add("yf list recycler view");
+        actions.add("recycler inside recycler");
+        actions.add("recycler view adapter demo");
+        MenuAdapter adapter = new MenuAdapter(actions);
+        mRv.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        mRv.setLayoutManager(layoutManager);
+        mRv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new RecyclerViewInterface.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, SampleActivity.class));
-            }
-        });
-        findViewById(R.id.btn_2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, SampleRecyclerInsideRecyclerActivity.class));
-            }
-        });
-        findViewById(R.id.btn_3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, SampleAdapterDemoActivity.class));
+            public void onItemClick(View view, Object o) {
+                if ("recycler inside recycler".equals(o.toString())) {
+                    startActivity(new Intent(MenuActivity.this, SampleRecyclerInsideRecyclerActivity.class));
+                } else if ("recycler view adapter demo".equals(o.toString())) {
+                    startActivity(new Intent(MenuActivity.this, SampleAdapterDemoActivity.class));
+                } else {
+                    startActivity(new Intent(MenuActivity.this, SampleActivity.class));
+                }
             }
         });
     }
