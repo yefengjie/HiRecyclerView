@@ -49,7 +49,7 @@ public class SimpleAdapter extends RecyclerViewAdapter<String> {
 
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-        String header = mHeaders.get(position);
+        String header = (String) mHeaders.get(position);
         ((HeaderViewHolder) holder).mText.setText(header);
         holder.itemView.setTag(header);
     }
@@ -62,7 +62,7 @@ public class SimpleAdapter extends RecyclerViewAdapter<String> {
 
     @Override
     public void onBindFooterViewHolder(RecyclerView.ViewHolder holder, int position) {
-        String footer = mFooters.get(position);
+        String footer = (String) mFooters.get(position);
         ((FooterViewHolder) holder).mText.setText(footer);
         holder.itemView.setTag(footer);
     }

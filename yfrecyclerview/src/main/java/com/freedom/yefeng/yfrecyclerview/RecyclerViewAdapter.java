@@ -406,6 +406,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         if (mHeaders.size() > 0) {
             notifyItemRangeRemoved(0, mHeaders.size());
             mHeaders.clear();
+            notifyDataSetChanged();
         }
     }
 
@@ -459,6 +460,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         if (mFooters.size() > 0) {
             notifyItemRangeChanged(0, mFooters.size());
             mFooters.clear();
+            notifyDataSetChanged();
         }
     }
 }
