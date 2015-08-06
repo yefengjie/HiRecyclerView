@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
+    <meta charset="UTF-8">
     <title>YfRecyclerView by yefengfreedom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">YfRecyclerView</h1>
+      <h2 class="project-tagline">a economic recycler view with header, footer,loading,error,load more,pull to refresh,etc...</h2>
+      <a href="https://github.com/yefengfreedom/YfRecyclerView" class="btn">View on GitHub</a>
+      <a href="https://github.com/yefengfreedom/YfRecyclerView/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/yefengfreedom/YfRecyclerView/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <header>
-      <div class="container">
-        <h1>YfRecyclerView</h1>
-        <h2>a economic recycler view with header, footer,loading,error,load more,pull to refresh,etc...</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/yefengfreedom/YfRecyclerView/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/yefengfreedom/YfRecyclerView/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/yefengfreedom/YfRecyclerView" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="yfrecyclerview" class="anchor" href="#yfrecyclerview" aria-hidden="true"><span class="octicon octicon-link"></span></a>YfRecyclerView</h1>
 
 <p>a economic recycler view with functions list below:</p>
@@ -47,7 +38,120 @@
 
 <p>7.error display</p>
 
-<p><img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/1.png" alt="alt tag">
+<p>8.divider</p>
+
+<p>9.add recycler view inside recycler view demo</p>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use</h2>
+
+<h3>
+<a id="first" class="anchor" href="#first" aria-hidden="true"><span class="octicon octicon-link"></span></a>first</h3>
+
+<p>include libs in your build.gradle</p>
+
+<p>or see it in maven :<a href="https://bintray.com/yefengfreedom/maven/YfRecyclerView/view">https://bintray.com/yefengfreedom/maven/YfRecyclerView/view</a></p>
+
+<div class="highlight highlight-Java"><pre>   compile <span class="pl-s"><span class="pl-pds">'</span>com.freedom.yefeng:yfrecyclerview:1.0.0<span class="pl-pds">'</span></span></pre></div>
+
+<h3>
+<a id="sencond" class="anchor" href="#sencond" aria-hidden="true"><span class="octicon octicon-link"></span></a>sencond</h3>
+
+<p>new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...</p>
+
+<div class="highlight highlight-Java"><pre>mAdapter <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">RecyclerViewAdapter</span>(mData) {
+            <span class="pl-k">@Override</span>
+            <span class="pl-k">public</span> <span class="pl-smi">RecyclerView</span>.<span class="pl-smi">ViewHolder</span> <span class="pl-en">onCreateDataViewHolder</span>(<span class="pl-smi">ViewGroup</span> <span class="pl-v">parent</span>) {
+                <span class="pl-smi">View</span> view <span class="pl-k">=</span> <span class="pl-smi">LayoutInflater</span><span class="pl-k">.</span>from(parent<span class="pl-k">.</span>getContext())<span class="pl-k">.</span>inflate(<span class="pl-smi">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>adapter_item, parent, <span class="pl-c1">false</span>);
+                <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">SimpleViewHolder</span>(view);
+            }
+
+            <span class="pl-k">@Override</span>
+            <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onBindDataViewHolder</span>(<span class="pl-smi">RecyclerView</span>.<span class="pl-smi">ViewHolder</span> <span class="pl-v">holder</span>, <span class="pl-k">int</span> <span class="pl-v">position</span>) {
+                ((<span class="pl-smi">TextView</span>) holder<span class="pl-k">.</span>itemView<span class="pl-k">.</span>findViewById(<span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>txt_adapter_item))<span class="pl-k">.</span>setText((<span class="pl-smi">String</span>) mData<span class="pl-k">.</span>get(position) <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> page is <span class="pl-pds">"</span></span> <span class="pl-k">+</span> mCurrentPage);
+                holder<span class="pl-k">.</span>itemView<span class="pl-k">.</span>setTag(mData<span class="pl-k">.</span>get(position));
+            }
+
+            <span class="pl-k">@Override</span>
+            <span class="pl-k">public</span> <span class="pl-smi">RecyclerView</span>.<span class="pl-smi">ViewHolder</span> <span class="pl-en">onCreateEmptyViewHolder</span>(<span class="pl-smi">ViewGroup</span> <span class="pl-v">parent</span>) {
+                <span class="pl-smi">View</span> view <span class="pl-k">=</span> <span class="pl-smi">LayoutInflater</span><span class="pl-k">.</span>from(parent<span class="pl-k">.</span>getContext())<span class="pl-k">.</span>inflate(<span class="pl-smi">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>view_empty_material, parent, <span class="pl-c1">false</span>);
+                <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">SimpleViewHolder</span>(view);
+            }
+
+            <span class="pl-k">@Override</span>
+            <span class="pl-k">public</span> <span class="pl-smi">RecyclerView</span>.<span class="pl-smi">ViewHolder</span> <span class="pl-en">onCreateLoadingViewHolder</span>(<span class="pl-smi">ViewGroup</span> <span class="pl-v">parent</span>) {
+                <span class="pl-smi">View</span> view <span class="pl-k">=</span> <span class="pl-smi">LayoutInflater</span><span class="pl-k">.</span>from(parent<span class="pl-k">.</span>getContext())<span class="pl-k">.</span>inflate(<span class="pl-smi">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>view_loading_material, parent, <span class="pl-c1">false</span>);
+                <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">SimpleViewHolder</span>(view);
+            }
+        };
+mRecycler<span class="pl-k">.</span>setAdapter(mAdapter);</pre></div>
+
+<h3>
+<a id="how-to-use-recycler-view-inside-recycler-view" class="anchor" href="#how-to-use-recycler-view-inside-recycler-view" aria-hidden="true"><span class="octicon octicon-link"></span></a>how to use recycler view inside recycler view</h3>
+
+<p>use ExpansionLinearLayoutManager to replace LinearLayoutManager</p>
+
+<div class="highlight highlight-Java"><pre><span class="pl-smi">ExpansionLinearLayoutManager</span> layoutManager <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ExpansionLinearLayoutManager</span>(getApplicationContext(), <span class="pl-smi">LinearLayoutManager</span><span class="pl-c1"><span class="pl-k">.</span>VERTICAL</span>, <span class="pl-c1">false</span>);
+recyclerView<span class="pl-k">.</span>setLayoutManager(layoutManager);</pre></div>
+
+<h3>
+<a id="change-display-modeshow-loading-datashow-datashow-emptyshow-error" class="anchor" href="#change-display-modeshow-loading-datashow-datashow-emptyshow-error" aria-hidden="true"><span class="octicon octicon-link"></span></a>change display mode(show loading data,show data,show empty,show error)</h3>
+
+<p>show data.if data is empty, empty view will display.</p>
+
+<div class="highlight highlight-Java"><pre>mAdapter<span class="pl-k">.</span>setData(mData);</pre></div>
+
+<p>show loading</p>
+
+<div class="highlight highlight-Java"><pre>mAdapter<span class="pl-k">.</span>changeMode(<span class="pl-smi">RecyclerViewMode</span><span class="pl-c1"><span class="pl-k">.</span>MODE_LOADING</span>);</pre></div>
+
+<p>show error</p>
+
+<div class="highlight highlight-Java"><pre>mAdapter<span class="pl-k">.</span>changeMode(<span class="pl-smi">RecyclerViewMode</span><span class="pl-c1"><span class="pl-k">.</span>MODE_ERROR</span>)</pre></div>
+
+<h3>
+<a id="add-header-or-footer" class="anchor" href="#add-header-or-footer" aria-hidden="true"><span class="octicon octicon-link"></span></a>add header or footer</h3>
+
+<p>override onCreateHeaderViewHolder and onBindHeaderViewHolder or onCreateFooterViewHolder and onBindFooterViewHolder method</p>
+
+<div class="highlight highlight-Java"><pre>            @<span class="pl-smi">Override</span>
+            <span class="pl-k">public</span> <span class="pl-smi">RecyclerView</span><span class="pl-k">.</span><span class="pl-smi">ViewHolder</span> onCreateHeaderViewHolder(<span class="pl-smi">ViewGroup</span> parent) {
+                <span class="pl-smi">View</span> view <span class="pl-k">=</span> <span class="pl-smi">LayoutInflater</span><span class="pl-k">.</span>from(parent<span class="pl-k">.</span>getContext())<span class="pl-k">.</span>inflate(<span class="pl-smi">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>view_header1, parent, <span class="pl-c1">false</span>);
+                <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">SimpleViewHolder</span>(view);
+            }
+
+            @<span class="pl-smi">Override</span>
+            <span class="pl-k">public</span> <span class="pl-k">void</span> onBindHeaderViewHolder(<span class="pl-smi">RecyclerView</span><span class="pl-k">.</span><span class="pl-smi">ViewHolder</span> holder, <span class="pl-k">int</span> position) {
+                ((<span class="pl-smi">TextView</span>) holder<span class="pl-k">.</span>itemView<span class="pl-k">.</span>findViewById(<span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>tv_header))<span class="pl-k">.</span>setText(mAdapter<span class="pl-k">.</span>getHeaders()<span class="pl-k">.</span>get(position)<span class="pl-k">.</span>toString());
+                holder<span class="pl-k">.</span>itemView<span class="pl-k">.</span>setTag(mAdapter<span class="pl-k">.</span>getHeaders()<span class="pl-k">.</span>get(position)<span class="pl-k">.</span>toString());
+            }
+
+            @<span class="pl-smi">Override</span>
+            <span class="pl-k">public</span> <span class="pl-smi">RecyclerView</span><span class="pl-k">.</span><span class="pl-smi">ViewHolder</span> onCreateFooterViewHolder(<span class="pl-smi">ViewGroup</span> parent) {
+                <span class="pl-smi">View</span> view <span class="pl-k">=</span> <span class="pl-smi">LayoutInflater</span><span class="pl-k">.</span>from(parent<span class="pl-k">.</span>getContext())<span class="pl-k">.</span>inflate(<span class="pl-smi">R</span><span class="pl-k">.</span>layout<span class="pl-k">.</span>view_footer1, parent, <span class="pl-c1">false</span>);
+                <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">SimpleViewHolder</span>(view);
+            }
+
+            @<span class="pl-smi">Override</span>
+            <span class="pl-k">public</span> <span class="pl-k">void</span> onBindFooterViewHolder(<span class="pl-smi">RecyclerView</span><span class="pl-k">.</span><span class="pl-smi">ViewHolder</span> holder, <span class="pl-k">int</span> position) {
+                ((<span class="pl-smi">TextView</span>) holder<span class="pl-k">.</span>itemView<span class="pl-k">.</span>findViewById(<span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>tv_footer))<span class="pl-k">.</span>setText(mAdapter<span class="pl-k">.</span>getFooters()<span class="pl-k">.</span>get(position)<span class="pl-k">.</span>toString());
+                holder<span class="pl-k">.</span>itemView<span class="pl-k">.</span>setTag(mAdapter<span class="pl-k">.</span>getFooters()<span class="pl-k">.</span>get(position)<span class="pl-k">.</span>toString());
+            }</pre></div>
+
+<p>call adapter's addHeader or addFooter method</p>
+
+<p>!!! make sure your adapter is in RecyclerViewMode.MODE_DATA</p>
+
+<div class="highlight highlight-Java"><pre> mAdapter<span class="pl-k">.</span>addHeader(<span class="pl-s"><span class="pl-pds">"</span>header 1<span class="pl-pds">"</span></span>);
+ mAdapter<span class="pl-k">.</span>removeHeader(header);
+ mAdapter<span class="pl-k">.</span>addFooter(<span class="pl-s"><span class="pl-pds">"</span>footer 1<span class="pl-pds">"</span></span>);
+ mAdapter<span class="pl-k">.</span>removeFooter(footer);</pre></div>
+
+<p><img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/0.png" alt="alt tag">
+<img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/6.png" alt="alt tag">
+<img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/1.png" alt="alt tag">
+<img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/2.png" alt="alt tag">
+<img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/2.5.png" alt="alt tag">
 <img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/3.png" alt="alt tag">
 <img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/4.png" alt="alt tag">
 <img src="https://github.com/yefengfreedom/RecyclerViewWithHeaderFooterLoadingEmptyViewErrorView/blob/master/preview/5.png" alt="alt tag"></p>
@@ -56,25 +160,25 @@
 <a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change Log</h2>
 
 <h4>
-<a id="15-2-15--add-auto-load-more-method" class="anchor" href="#15-2-15--add-auto-load-more-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>15-2-15  add auto load more method</h4>
-
-<h2>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use</h2>
-
-<h3>
-<a id="first" class="anchor" href="#first" aria-hidden="true"><span class="octicon octicon-link"></span></a>first</h3>
-
-<p>add this init method below in your application</p>
-
-<p>DisplayInfo.init(getApplicationContext());</p>
+<a id="15-7-25--add-auto-load-more-method--add-list-divider" class="anchor" href="#15-7-25--add-auto-load-more-method--add-list-divider" aria-hidden="true"><span class="octicon octicon-link"></span></a>15-7-25  add auto load more method.  add list divider</h4>
 
 <h4>
-<a id="second" class="anchor" href="#second" aria-hidden="true"><span class="octicon octicon-link"></span></a>second</h4>
+<a id="15-7-28--add-recycler-view-inside-recycler-view-demo" class="anchor" href="#15-7-28--add-recycler-view-inside-recycler-view-demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>15-7-28  add recycler view inside recycler view demo</h4>
 
-<p>new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...</p>
-      </section>
-    </div>
+<h4>
+<a id="15-7-30--upload-to-maven-center" class="anchor" href="#15-7-30--upload-to-maven-center" aria-hidden="true"><span class="octicon octicon-link"></span></a>15-7-30  upload to maven center</h4>
 
-    
+<h4>
+<a id="15-8-5---add-recycler-view-adapter-demo" class="anchor" href="#15-8-5---add-recycler-view-adapter-demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>15-8-5   add recycler view adapter demo</h4>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/yefengfreedom/YfRecyclerView">YfRecyclerView</a> is maintained by <a href="https://github.com/yefengfreedom">yefengfreedom</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
