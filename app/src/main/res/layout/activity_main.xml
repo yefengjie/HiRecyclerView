@@ -72,7 +72,7 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/default_ui_margin"
                     android:paddingTop="@dimen/default_ui_margin"
-                    android:text="yf_recycler_view"
+                    android:text="yf list recycler view"
                     android:textColor="@color/yf_white"
                     android:textSize="@dimen/text_size_button"
                     android:textStyle="bold"/>

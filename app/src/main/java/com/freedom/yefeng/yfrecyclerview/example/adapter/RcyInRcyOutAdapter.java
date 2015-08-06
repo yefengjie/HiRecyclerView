@@ -1,15 +1,16 @@
-package com.freedom.yefeng.yfrecyclerview.example;
+package com.freedom.yefeng.yfrecyclerview.example.adapter;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.freedom.yefeng.yfrecyclerview.ExpansionLinearLayoutManager;
 import com.freedom.yefeng.yfrecyclerview.RecyclerViewAdapter;
 import com.freedom.yefeng.yfrecyclerview.SimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
 
@@ -17,15 +18,16 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class DemoAdapter extends RecyclerViewAdapter<String> {
+public class RcyInRcyOutAdapter extends RecyclerViewAdapter<String> {
 
-    public DemoAdapter(ArrayList<String> data) {
+
+    public RcyInRcyOutAdapter(ArrayList<String> data) {
         super(data);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_recycler_inside_recycler, parent, false);
         return new ViewHolder(view);
     }
 
@@ -38,23 +40,29 @@ public class DemoAdapter extends RecyclerViewAdapter<String> {
     @Override
     public void onBindDataViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         ((ViewHolder) viewHolder).mText.setText(mData.get(i));
+        showRecycler(((ViewHolder) viewHolder), mData);
         viewHolder.itemView.setTag(mData.get(i));
+    }
+
+    private void showRecycler(ViewHolder holder, ArrayList<String> data) {
+        RecyclerView recyclerView = holder.mRecyclerView;
+        recyclerView.setHasFixedSize(true);
+        ExpansionLinearLayoutManager layoutManager = new ExpansionLinearLayoutManager(
+                holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        RcyInRcyInsideAdapter adapter = new RcyInRcyInsideAdapter(data);
+        recyclerView.setAdapter(adapter);
     }
 
     private static final class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mText;
+        RecyclerView mRecyclerView;
 
-        public ViewHolder(final View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             mText = (TextView) itemView.findViewById(R.id.txt_adapter_item);
-            mText.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    Toast.makeText(itemView.getContext(), "touch item", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-            });
+            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.recycler);
         }
     }
 }

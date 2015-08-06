@@ -2,6 +2,7 @@ package com.freedom.yefeng.yfrecyclerview;
 
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,19 +20,19 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     /**
      * data set
      */
-    protected ArrayList<T> mData;
+    public ArrayList<T> mData;
     /**
      * headers
      */
-    protected ArrayList<T> mHeaders;
+    public ArrayList<T> mHeaders;
     /**
      * footers
      */
-    protected ArrayList<T> mFooters;
+    public ArrayList<T> mFooters;
     /**
      * recycler view mode
      */
-    protected int mMode;
+    public int mMode;
 
     /**
      * tool bar height
@@ -347,6 +348,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
         this.notifyDataSetChanged();
     }
 
+
     public int getFooterCount() {
         return mFooters.size();
     }
@@ -361,6 +363,10 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      * @param header header
      */
     public void addHeader(T header) {
+        if (mMode != RecyclerViewMode.MODE_DATA) {
+            Log.e("Recycler View Adapter", "error: you can not add header or footer while you are not in data mode");
+            return;
+        }
         if (!mHeaders.contains(header)) {
             mHeaders.add(header);
             //animate
@@ -394,11 +400,25 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     }
 
     /**
+     * remove all headers
+     */
+    public void removeAllHeader() {
+        if (mHeaders.size() > 0) {
+            notifyItemRangeRemoved(0, mHeaders.size());
+            mHeaders.clear();
+        }
+    }
+
+    /**
      * add a footer to the adapter
      *
      * @param footer footer
      */
     public void addFooter(T footer) {
+        if (mMode != RecyclerViewMode.MODE_DATA) {
+            Log.e("Recycler View Adapter", "error: you can not add header or footer while you are not in data mode");
+            return;
+        }
         if (!mFooters.contains(footer)) {
             mFooters.add(footer);
             //animate
@@ -429,6 +449,16 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
             //animate
             notifyItemRemoved(mHeaders.size() + mData.size() + position);
             mFooters.remove(position);
+        }
+    }
+
+    /**
+     * remove all footers
+     */
+    public void removeAllFooters() {
+        if (mFooters.size() > 0) {
+            notifyItemRangeChanged(0, mFooters.size());
+            mFooters.clear();
         }
     }
 }

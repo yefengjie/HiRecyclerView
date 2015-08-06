@@ -9,9 +9,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name="com.freedom.yefeng.yfrecyclerview.example.SampleRecyclerInsideRecyclerActivity"/>
-        <activity android:name="com.freedom.yefeng.yfrecyclerview.example.SampleActivity"/>
-        <activity android:name="com.freedom.yefeng.yfrecyclerview.example.SampleAdapterDemoActivity"/>
+        <activity
+            android:name="com.freedom.yefeng.yfrecyclerview.example.SampleRecyclerInsideRecyclerActivity"
+            android:label="RecyclerInsideRecyclerDemo"/>
+        <activity
+            android:name="com.freedom.yefeng.yfrecyclerview.example.SampleActivity"
+            android:label="YfRecyclerView"/>
+        <activity
+            android:name="com.freedom.yefeng.yfrecyclerview.example.SampleAdapterDemoActivity"
+            android:label="SampleAdapterDemo"/>
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.MenuActivity"
             android:icon="@mipmap/ic_launcher"

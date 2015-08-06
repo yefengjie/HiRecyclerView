@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout
     android:id="@+id/main_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:theme="@style/AppThemeActionBar"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"/>
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:background="#FFFFFF"
+        />
 
 </LinearLayout>

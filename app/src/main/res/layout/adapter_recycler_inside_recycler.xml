@@ -17,5 +17,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/holo_red_light"/>
+        android:background="@color/primary_light"
+        android:paddingLeft="@dimen/default_ui_margin"
+        android:paddingRight="@dimen/default_ui_margin"/>
 </LinearLayout>

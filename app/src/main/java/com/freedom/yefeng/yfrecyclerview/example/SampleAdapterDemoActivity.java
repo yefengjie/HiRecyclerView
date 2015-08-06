@@ -1,13 +1,14 @@
 package com.freedom.yefeng.yfrecyclerview.example;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewInterface;
+import com.freedom.yefeng.yfrecyclerview.example.adapter.DemoAdapter;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,15 @@ public class SampleAdapterDemoActivity extends AppCompatActivity {
             mData.add("item  " + i);
         }
 
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(mToolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        if (null != ab) {
+            ab.setHomeAsUpIndicator(R.drawable.ic_action_back);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
         mRecycler = (RecyclerView) findViewById(R.id.recycler);
         mRecycler.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -37,11 +47,14 @@ public class SampleAdapterDemoActivity extends AppCompatActivity {
 
         mAdapter = new DemoAdapter(mData);
         mRecycler.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new RecyclerViewInterface.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, Object o) {
-                Toast.makeText(getApplicationContext(), (String) o, Toast.LENGTH_SHORT).show();
-            }
-        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

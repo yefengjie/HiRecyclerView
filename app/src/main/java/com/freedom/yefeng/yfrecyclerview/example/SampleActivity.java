@@ -5,22 +5,19 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewAdapter;
 import com.freedom.yefeng.yfrecyclerview.RecyclerViewInterface;
 import com.freedom.yefeng.yfrecyclerview.RecyclerViewMode;
-import com.freedom.yefeng.yfrecyclerview.SimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 
 import java.util.ArrayList;
 
@@ -30,7 +27,7 @@ public class SampleActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mSwipeLayout;
     private LinearLayoutManager mLayoutManager;
-    private RecyclerViewAdapter mAdapter;
+    private SimpleAdapter mAdapter;
     ArrayList<String> mData = new ArrayList<String>();
 
     private int h = 0;
@@ -46,6 +43,15 @@ public class SampleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        if (null != ab) {
+            ab.setHomeAsUpIndicator(R.drawable.ic_action_back);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         for (int i = 0; i < 20; i++) {
             mData.add("item  " + i);
@@ -68,9 +74,6 @@ public class SampleActivity extends AppCompatActivity {
                 }, 5000);
             }
         });
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         mRecycler = (RecyclerView) findViewById(R.id.recycler);
         mRecycler.setHasFixedSize(true);
@@ -130,63 +133,7 @@ public class SampleActivity extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        mAdapter = new RecyclerViewAdapter(mData) {
-            @Override
-            public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
-                //// TODO: 8/4/15 we should find views or add views listener in onCreateDataViewHolder,
-                //// TODO: so we need to define ViewHolder by ourselves, instead of using SimpleViewHolder.
-                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position) + " page is " + mCurrentPage);
-                holder.itemView.setTag(mData.get(position));
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_header1, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView) holder.itemView.findViewById(R.id.tv_header)).setText(mAdapter.getHeaders().get(position).toString());
-                holder.itemView.setTag(mAdapter.getHeaders().get(position).toString());
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateFooterViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_footer1, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public void onBindFooterViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView) holder.itemView.findViewById(R.id.tv_footer)).setText(mAdapter.getFooters().get(position).toString());
-                holder.itemView.setTag(mAdapter.getFooters().get(position).toString());
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateErrorViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_net_error_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateLoadingViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_loading_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
-        };
+        mAdapter = new SimpleAdapter(mData);
         mAdapter.setOnItemClickListener(new RecyclerViewInterface.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Object o) {
@@ -235,6 +182,9 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
             case R.id.action_add_header:
                 if (h < 0) {
                     h = 0;
@@ -275,6 +225,10 @@ public class SampleActivity extends AppCompatActivity {
                 return true;
             case R.id.action_clear_data:
                 mCurrentPage = 1;
+                h = 0;
+                f = 0;
+                mAdapter.removeAllHeader();
+                mAdapter.removeAllFooters();
                 mAdapter.setData(null);
                 return true;
             case R.id.action_set_data:
@@ -283,6 +237,10 @@ public class SampleActivity extends AppCompatActivity {
                 for (int i = 0; i < 20; i++) {
                     mData.add("item  " + i);
                 }
+                h = 0;
+                f = 0;
+                mAdapter.removeAllHeader();
+                mAdapter.removeAllFooters();
                 mAdapter.setData(mData);
                 return true;
 
@@ -293,5 +251,4 @@ public class SampleActivity extends AppCompatActivity {
     public void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
-
 }

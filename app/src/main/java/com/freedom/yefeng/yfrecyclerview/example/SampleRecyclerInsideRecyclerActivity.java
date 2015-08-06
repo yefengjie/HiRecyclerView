@@ -1,19 +1,14 @@
 package com.freedom.yefeng.yfrecyclerview.example;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-import com.freedom.yefeng.yfrecyclerview.ExpansionLinearLayoutManager;
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewAdapter;
-import com.freedom.yefeng.yfrecyclerview.SimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.example.adapter.RcyInRcyOutAdapter;
 
 import java.util.ArrayList;
 
@@ -22,22 +17,25 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
 
     private RecyclerView mRecycler;
     private LinearLayoutManager mLayoutManager;
-    private RecyclerViewAdapter mAdapter;
+    private RcyInRcyOutAdapter mAdapter;
+    private Toolbar mToolbar;
     ArrayList<String> mData = new ArrayList<String>();
-    ArrayList<String> data = new ArrayList<String>();
-    private Drawable mDivider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_inside_recycler);
-
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             mData.add("item  " + i);
         }
 
-        for (int i = 0; i < 3; i++) {
-            data.add("item inside  " + i);
+        mToolbar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(mToolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        if (null != ab) {
+            ab.setHomeAsUpIndicator(R.drawable.ic_action_back);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
 
         mRecycler = (RecyclerView) findViewById(R.id.recycler);
@@ -45,82 +43,16 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecycler.setLayoutManager(mLayoutManager);
 
-        initAdapter();
+        mAdapter = new RcyInRcyOutAdapter(mData);
         mRecycler.setAdapter(mAdapter);
-        mDivider = getResources().getDrawable(R.drawable.divider_horizontal_bright_opaque);
-        mRecycler.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                int left = parent.getPaddingLeft();
-                int right = parent.getWidth() - parent.getPaddingRight();
-
-                int childCount = parent.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View child = parent.getChildAt(i);
-
-                    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-
-                    int top = child.getBottom() + params.bottomMargin;
-                    int bottom = top + mDivider.getIntrinsicHeight();
-
-                    mDivider.setBounds(left, top, right, bottom);
-                    mDivider.draw(c);
-                }
-            }
-        });
     }
 
-    private void initAdapter() {
-        mAdapter = new RecyclerViewAdapter(mData) {
-            @Override
-            public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_recycler_inside_recycler, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
-                //// TODO: 8/4/15 we should find views or add views listener in onCreateDataViewHolder
-                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position));
-                RecyclerView recyclerView = (RecyclerView) holder.itemView.findViewById(R.id.recycler);
-                showRecycler(recyclerView);
-                holder.itemView.setTag(mData.get(position));
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
-        };
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
-
-    private void showRecycler(RecyclerView recyclerView) {
-        recyclerView.setHasFixedSize(true);
-        ExpansionLinearLayoutManager layoutManager = new ExpansionLinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(data) {
-            @Override
-            public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
-                return new SimpleViewHolder(view);
-            }
-
-            @Override
-            public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
-                //// TODO: 8/4/15 we should find views or add views listener in onCreateDataViewHolder
-                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) data.get(position));
-                holder.itemView.setTag(mData.get(position));
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
-        };
-        recyclerView.setAdapter(adapter);
-    }
-
-
 }
