@@ -24,6 +24,7 @@ public class YfListView extends RecyclerView {
     private int mVisibleItemCount, mTotalItemCount, mFirstVisibleItemPosition;
     private LinearLayoutManager mLayoutManager;
     private Adapter mAdapter;
+    private YfLoadMoreListener mLoadMoreListener;
 
     public YfListView(Context context) {
         super(context);
@@ -143,9 +144,23 @@ public class YfListView extends RecyclerView {
     }
 
     /**
+     * set load more listener
+     *
+     * @param loadMoreListener load more listener
+     */
+    public void setLoadMoreListener(YfLoadMoreListener loadMoreListener) {
+        this.mLoadMoreListener = loadMoreListener;
+    }
+
+    /**
      * load more
      */
     public void loadMore() {
-        LogUtil.d(TAG, "loadMore");
+        if (null != mLoadMoreListener) {
+            LogUtil.d(TAG, "loadMore");
+            mLoadMoreListener.loadMore();
+        }
     }
+
+
 }

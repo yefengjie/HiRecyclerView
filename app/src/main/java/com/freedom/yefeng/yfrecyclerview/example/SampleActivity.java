@@ -1,43 +1,40 @@
 package com.freedom.yefeng.yfrecyclerview.example;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewInterface;
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewMode;
+import com.freedom.yefeng.yfrecyclerview.YfListInterface;
+import com.freedom.yefeng.yfrecyclerview.YfListMode;
+import com.freedom.yefeng.yfrecyclerview.YfListView;
+import com.freedom.yefeng.yfrecyclerview.YfLoadMoreListener;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
-public class SampleActivity extends AppCompatActivity {
+public class SampleActivity extends AppCompatActivity implements YfLoadMoreListener {
 
-    private RecyclerView mRecycler;
+    private YfListView mList;
     private SwipeRefreshLayout mSwipeLayout;
     private LinearLayoutManager mLayoutManager;
     private SimpleAdapter mAdapter;
     ArrayList<String> mData = new ArrayList<String>();
 
-    private int h = 0;
-    private int f = 0;
-    private int mode = RecyclerViewMode.MODE_DATA;
+    private int headerPosition = 0;
+    private int footerPosition = 0;
+    private int mode = YfListMode.MODE_DATA;
 
-    private int mVisibleItemCount, mTotalItemCount, mFirstVisibleItemPosition;
     private int mTotalDataCount = 100;
     private int mCurrentPage = 1;
-    private Drawable mDivider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,52 +72,20 @@ public class SampleActivity extends AppCompatActivity {
             }
         });
 
-        mRecycler = (RecyclerView) findViewById(R.id.recycler);
-        mRecycler.setHasFixedSize(true);
+        mList = (YfListView) findViewById(R.id.recycler);
+        mList.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecycler.setLayoutManager(mLayoutManager);
+        mList.setLayoutManager(mLayoutManager);
 
         initAdapter();
-        mRecycler.setAdapter(mAdapter);
-        mRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (null == mLayoutManager || null == mAdapter) {
-                    return;
-                }
-                mVisibleItemCount = mLayoutManager.getChildCount();
-                mTotalItemCount = mLayoutManager.getItemCount();
-                mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
-                if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
-                    loadMore();
-                }
-            }
-        });
-        mDivider = getResources().getDrawable(R.drawable.divider_horizontal_bright_opaque);
-        mRecycler.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                int left = parent.getPaddingLeft();
-                int right = parent.getWidth() - parent.getPaddingRight();
-
-                int childCount = parent.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View child = parent.getChildAt(i);
-
-                    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-
-                    int top = child.getBottom() + params.bottomMargin;
-                    int bottom = top + mDivider.getIntrinsicHeight();
-
-                    mDivider.setBounds(left, top, right, bottom);
-                    mDivider.draw(c);
-                }
-            }
-        });
+        mList.setAdapter(mAdapter);
+        mList.enableAutoLoadMore();
+        mList.setLoadMoreListener(this);
+        mList.setDivider(R.drawable.divider_horizontal_bright_opaque);
     }
 
-    private void loadMore() {
+    @Override
+    public void loadMore() {
         if (mAdapter.getData().size() < mTotalDataCount && mAdapter.getData().size() > 0) {
             mCurrentPage++;
             ArrayList<String> moreData = new ArrayList<String>();
@@ -134,38 +99,38 @@ public class SampleActivity extends AppCompatActivity {
 
     private void initAdapter() {
         mAdapter = new SimpleAdapter(mData);
-        mAdapter.setOnItemClickListener(new RecyclerViewInterface.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new YfListInterface.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Object o) {
                 showToast((String) o);
             }
         });
-        mAdapter.setOnItemLongClickListener(new RecyclerViewInterface.OnItemLongClickListener() {
+        mAdapter.setOnItemLongClickListener(new YfListInterface.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View view, Object o) {
                 showToast(o + " long click");
             }
         });
-        mAdapter.setOnHeaderViewClickListener(new RecyclerViewInterface.OnHeaderViewClickListener() {
+        mAdapter.setOnHeaderViewClickListener(new YfListInterface.OnHeaderViewClickListener() {
             @Override
             public void onHeaderViewClick(View view, Object o) {
                 showToast((String) o);
             }
         });
-        mAdapter.setOnFooterViewClickListener(new RecyclerViewInterface.OnFooterViewClickListener() {
+        mAdapter.setOnFooterViewClickListener(new YfListInterface.OnFooterViewClickListener() {
             @Override
             public void onFooterViewClick(View view, Object o) {
                 showToast((String) o);
             }
         });
-        mAdapter.setOnEmptyViewClickListener(new RecyclerViewInterface.OnEmptyViewClickListener() {
+        mAdapter.setOnEmptyViewClickListener(new YfListInterface.OnEmptyViewClickListener() {
             @Override
             public void onEmptyViewClick(View view) {
                 showToast("click empty view");
             }
         });
 
-        mAdapter.setOnErrorViewClickListener(new RecyclerViewInterface.OnErrorViewClickListener() {
+        mAdapter.setOnErrorViewClickListener(new YfListInterface.OnErrorViewClickListener() {
             @Override
             public void onErrorViewClick(View view) {
                 showToast("click error view");
@@ -186,47 +151,47 @@ public class SampleActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_add_header:
-                if (h < 0) {
-                    h = 0;
+                if (headerPosition < 0) {
+                    headerPosition = 0;
                 }
-                h++;
-                mAdapter.addHeader("header " + h);
-                mRecycler.scrollToPosition(0);
+                headerPosition++;
+                mAdapter.addHeader("header " + headerPosition);
+                mList.scrollToPosition(0);
                 return true;
             case R.id.action_remove_header:
-                if (h <= 0) {
+                if (headerPosition <= 0) {
                     return true;
                 }
-                h--;
-                mAdapter.removeHeader(h);
-                mRecycler.scrollToPosition(0);
+                headerPosition--;
+                mAdapter.removeHeader(headerPosition);
+                mList.scrollToPosition(0);
                 return true;
             case R.id.action_add_footer:
-                if (f < 0) {
-                    f = 0;
+                if (footerPosition < 0) {
+                    footerPosition = 0;
                 }
-                f++;
-                mAdapter.addFooter("footer " + f);
-                mRecycler.scrollToPosition(mAdapter.getItemCount() - 1);
+                footerPosition++;
+                mAdapter.addFooter("footer " + footerPosition);
+                mList.scrollToPosition(mAdapter.getItemCount() - 1);
                 return true;
             case R.id.action_remove_footer:
-                if (f <= 0) {
+                if (footerPosition <= 0) {
                     return true;
                 }
-                f--;
-                mAdapter.removeFooter(f);
-                mRecycler.scrollToPosition(mAdapter.getItemCount() - 1);
+                footerPosition--;
+                mAdapter.removeFooter(footerPosition);
+                mList.scrollToPosition(mAdapter.getItemCount() - 1);
                 return true;
             case R.id.action_change_mode:
                 mAdapter.changeMode(++mode);
-                if (mode > RecyclerViewMode.MODE_EMPTY) {
-                    mode = RecyclerViewMode.MODE_DATA;
+                if (mode > YfListMode.MODE_EMPTY) {
+                    mode = YfListMode.MODE_DATA;
                 }
                 return true;
             case R.id.action_clear_data:
                 mCurrentPage = 1;
-                h = 0;
-                f = 0;
+                headerPosition = 0;
+                footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
                 mAdapter.setData(null);
@@ -237,8 +202,8 @@ public class SampleActivity extends AppCompatActivity {
                 for (int i = 0; i < 20; i++) {
                     mData.add("item  " + i);
                 }
-                h = 0;
-                f = 0;
+                headerPosition = 0;
+                footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
                 mAdapter.setData(mData);

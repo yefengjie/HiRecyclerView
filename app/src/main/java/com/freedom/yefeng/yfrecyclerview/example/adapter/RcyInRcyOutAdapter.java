@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.ExpansionLinearLayoutManager;
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewAdapter;
-import com.freedom.yefeng.yfrecyclerview.SimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.UnfoldLinearLayoutManager;
+import com.freedom.yefeng.yfrecyclerview.YfListAdapter;
+import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class RcyInRcyOutAdapter extends RecyclerViewAdapter<String> {
+public class RcyInRcyOutAdapter extends YfListAdapter<String> {
 
 
     public RcyInRcyOutAdapter(ArrayList<String> data) {
@@ -34,7 +34,7 @@ public class RcyInRcyOutAdapter extends RecyclerViewAdapter<String> {
     @Override
     public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-        return new SimpleViewHolder(view);
+        return new YfSimpleViewHolder(view);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RcyInRcyOutAdapter extends RecyclerViewAdapter<String> {
     private void showRecycler(ViewHolder holder, ArrayList<String> data) {
         RecyclerView recyclerView = holder.mRecyclerView;
         recyclerView.setHasFixedSize(true);
-        ExpansionLinearLayoutManager layoutManager = new ExpansionLinearLayoutManager(
+        UnfoldLinearLayoutManager layoutManager = new UnfoldLinearLayoutManager(
                 holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         RcyInRcyInsideAdapter adapter = new RcyInRcyInsideAdapter(data);

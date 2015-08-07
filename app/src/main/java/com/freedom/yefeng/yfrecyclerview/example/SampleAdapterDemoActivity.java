@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.freedom.yefeng.yfrecyclerview.YfListView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.DemoAdapter;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * github:yefengfreedom
  */
 public class SampleAdapterDemoActivity extends AppCompatActivity {
-    private RecyclerView mRecycler;
+    private YfListView mList;
     private LinearLayoutManager mLayoutManager;
     private DemoAdapter mAdapter;
     private ArrayList<String> mData = new ArrayList<String>();
@@ -40,13 +40,13 @@ public class SampleAdapterDemoActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        mRecycler = (RecyclerView) findViewById(R.id.recycler);
-        mRecycler.setHasFixedSize(true);
+        mList = (YfListView) findViewById(R.id.recycler);
+        mList.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecycler.setLayoutManager(mLayoutManager);
+        mList.setLayoutManager(mLayoutManager);
 
         mAdapter = new DemoAdapter(mData);
-        mRecycler.setAdapter(mAdapter);
+        mList.setAdapter(mAdapter);
     }
 
     @Override

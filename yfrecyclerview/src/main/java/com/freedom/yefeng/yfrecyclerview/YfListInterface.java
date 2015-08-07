@@ -53,5 +53,4 @@ public class YfListInterface {
     public interface OnFooterViewClickListener<T> {
         void onFooterViewClick(View view, T t);
     }
-
 }

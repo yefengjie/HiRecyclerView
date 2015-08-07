@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewAdapter;
-import com.freedom.yefeng.yfrecyclerview.SimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.YfListAdapter;
+import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class SimpleAdapter extends RecyclerViewAdapter<String> {
+public class SimpleAdapter extends YfListAdapter<String> {
 
     public SimpleAdapter(ArrayList<String> data) {
         super(data);
@@ -31,7 +31,7 @@ public class SimpleAdapter extends RecyclerViewAdapter<String> {
     @Override
     public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-        return new SimpleViewHolder(view);
+        return new YfSimpleViewHolder(view);
     }
 
     @Override
@@ -71,13 +71,13 @@ public class SimpleAdapter extends RecyclerViewAdapter<String> {
     @Override
     public RecyclerView.ViewHolder onCreateErrorViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_net_error_material, parent, false);
-        return new SimpleViewHolder(view);
+        return new YfSimpleViewHolder(view);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateLoadingViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_loading_material, parent, false);
-        return new SimpleViewHolder(view);
+        return new YfSimpleViewHolder(view);
     }
 
     private static final class ViewHolder extends RecyclerView.ViewHolder {

@@ -11,13 +11,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleRecyclerInsideRecyclerActivity"
-            android:label="RecyclerInsideRecyclerDemo"/>
+            android:label="RecyclerListInsideRecyclerList"/>
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleActivity"
-            android:label="YfRecyclerView"/>
+            android:label="YfRecyclerListView"/>
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleAdapterDemoActivity"
-            android:label="SampleAdapterDemo"/>
+            android:label="YfListAdapterDemo"/>
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.MenuActivity"
             android:icon="@mipmap/ic_launcher"

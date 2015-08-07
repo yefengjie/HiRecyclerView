@@ -8,13 +8,13 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.freedom.yefeng.yfrecyclerview.RecyclerViewInterface;
+import com.freedom.yefeng.yfrecyclerview.YfListInterface;
+import com.freedom.yefeng.yfrecyclerview.YfListView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.MenuAdapter;
 import com.freedom.yefeng.yfrecyclerview.example.base.AppInfo;
 
@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     Toolbar mTb;
     CollapsingToolbarLayout mCtl;
     CoordinatorLayout mCl;
-    RecyclerView mRv;
+    YfListView mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         mTb = (Toolbar) findViewById(R.id.tb);
         mCtl = (CollapsingToolbarLayout) findViewById(R.id.ctl);
         mCl = (CoordinatorLayout) findViewById(R.id.cl);
-        mRv = (RecyclerView) findViewById(R.id.rv);
+        mList = (YfListView) findViewById(R.id.rv);
         initToolbar();
         init();
     }
@@ -49,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
         mTb.setTitleTextColor(getResources().getColor(R.color.yf_white));
-        mCtl.setTitle("yf recycler view");
+        mCtl.setTitle("Yf List View");
         mCtl.setExpandedTitleColor(getResources().getColor(R.color.yf_indigo_accent));
         int height = AppInfo.width / 4 * 3;
         CollapsingToolbarLayout.LayoutParams lp = new CollapsingToolbarLayout.LayoutParams(AppInfo.width, height);
@@ -58,20 +58,20 @@ public class MenuActivity extends AppCompatActivity {
 
     private void init() {
         ArrayList<String> actions = new ArrayList<String>();
-        actions.add("yf list recycler view");
-        actions.add("recycler inside recycler");
-        actions.add("recycler view adapter demo");
+        actions.add("YfRecyclerListView");
+        actions.add("RecyclerListInsideRecyclerList");
+        actions.add("YfListAdapterDemo");
         MenuAdapter adapter = new MenuAdapter(actions);
-        mRv.setHasFixedSize(true);
+        mList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        mRv.setLayoutManager(layoutManager);
-        mRv.setAdapter(adapter);
-        adapter.setOnItemClickListener(new RecyclerViewInterface.OnItemClickListener() {
+        mList.setLayoutManager(layoutManager);
+        mList.setAdapter(adapter);
+        adapter.setOnItemClickListener(new YfListInterface.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Object o) {
-                if ("recycler inside recycler".equals(o.toString())) {
+                if ("RecyclerListInsideRecyclerList".equals(o.toString())) {
                     startActivity(new Intent(MenuActivity.this, SampleRecyclerInsideRecyclerActivity.class));
-                } else if ("recycler view adapter demo".equals(o.toString())) {
+                } else if ("YfListAdapterDemo".equals(o.toString())) {
                     startActivity(new Intent(MenuActivity.this, SampleAdapterDemoActivity.class));
                 } else {
                     startActivity(new Intent(MenuActivity.this, SampleActivity.class));
