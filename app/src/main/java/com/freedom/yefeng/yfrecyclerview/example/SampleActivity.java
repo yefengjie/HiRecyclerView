@@ -24,23 +24,32 @@ import java.util.ArrayList;
 public class SampleActivity extends AppCompatActivity implements YfLoadMoreListener {
 
     private YfListView mList;
-    private SwipeRefreshLayout mSwipeLayout;
-    private LinearLayoutManager mLayoutManager;
     private SimpleAdapter mAdapter;
-    ArrayList<String> mData = new ArrayList<String>();
+    private ArrayList<String> mData = new ArrayList<String>();
 
     private int headerPosition = 0;
     private int footerPosition = 0;
     private int mode = YfListMode.MODE_DATA;
 
-    private int mTotalDataCount = 100;
+    private int mTotalDataCount = 50;
     private int mCurrentPage = 1;
+    private boolean mLoadingLock = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
 
+        for (int i = 0; i < 20; i++) {
+            mData.add("item  " + i);
+        }
+
+        initToolbar();
+        initSwipeLayout();
+        initList();
+    }
+
+    private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,12 +58,10 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
             ab.setHomeAsUpIndicator(R.drawable.ic_action_back);
             ab.setDisplayHomeAsUpEnabled(true);
         }
+    }
 
-        for (int i = 0; i < 20; i++) {
-            mData.add("item  " + i);
-        }
-
-        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+    private void initSwipeLayout() {
+        final SwipeRefreshLayout mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeLayout.setColorSchemeResources(
                 android.R.color.holo_blue_light,
                 android.R.color.holo_green_light,
@@ -71,12 +78,12 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
                 }, 5000);
             }
         });
+    }
 
+    private void initList() {
         mList = (YfListView) findViewById(R.id.recycler);
         mList.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mList.setLayoutManager(mLayoutManager);
-
+        mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         initAdapter();
         mList.setAdapter(mAdapter);
         mList.enableAutoLoadMore();
@@ -86,14 +93,32 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
 
     @Override
     public void loadMore() {
+        if (mLoadingLock) {
+            return;
+        }
         if (mAdapter.getData().size() < mTotalDataCount && mAdapter.getData().size() > 0) {
-            mCurrentPage++;
-            ArrayList<String> moreData = new ArrayList<String>();
-            for (int i = 0; i < 20; i++) {
-                moreData.add("item  " + (20 * (mCurrentPage - 1) + i));
+            // has more
+            mLoadingLock = true;
+            if (!mAdapter.getFooters().contains("loading...")) {
+                mAdapter.addFooter("loading...");
             }
-            mAdapter.addData(moreData);
-            showToast("load more. current page is " + mCurrentPage);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mCurrentPage++;
+                    ArrayList<String> moreData = new ArrayList<String>();
+                    for (int i = 0; i < 20; i++) {
+                        moreData.add("item  " + (20 * (mCurrentPage - 1) + i));
+                    }
+                    mAdapter.addData(moreData);
+                    mLoadingLock = false;
+                }
+            }, 3000);
+        } else {
+            // no more
+            if (mAdapter.getFooters().contains("loading...")) {
+                mAdapter.removeFooter("loading...");
+            }
         }
     }
 
@@ -137,6 +162,7 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
