@@ -6,7 +6,7 @@ import android.view.View;
  * Created by yefeng on 7/24/15.
  * github:yefengfreedom
  */
-public class RecyclerViewInterface {
+public class YfListInterface {
 
     /**
      * click recycler view item

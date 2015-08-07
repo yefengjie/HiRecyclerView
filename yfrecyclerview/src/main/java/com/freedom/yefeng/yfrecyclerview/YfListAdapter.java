@@ -15,7 +15,9 @@ import java.util.ArrayList;
  * if you want to enable each views, you should Override each onCreateViewHolder method and onBindViewHolder method
  */
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
+public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
+
+    private static final String TAG = "YfListAdapter";
 
     /**
      * data set
@@ -41,40 +43,40 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     //you can use AppBarLayout.getMeasuredHeight method to get toobar height.
     protected int mToolBarHeight;
 
-    private RecyclerViewInterface.OnItemClickListener mOnItemClickListener;
-    private RecyclerViewInterface.OnItemLongClickListener mOnItemLongClickListener;
-    private RecyclerViewInterface.OnEmptyViewClickListener mOnEmptyViewClickListener;
-    private RecyclerViewInterface.OnErrorViewClickListener mOnErrorViewClickListener;
-    private RecyclerViewInterface.OnHeaderViewClickListener mOnHeaderViewClickListener;
-    private RecyclerViewInterface.OnFooterViewClickListener mOnFooterViewClickListener;
+    private YfListInterface.OnItemClickListener mOnItemClickListener;
+    private YfListInterface.OnItemLongClickListener mOnItemLongClickListener;
+    private YfListInterface.OnEmptyViewClickListener mOnEmptyViewClickListener;
+    private YfListInterface.OnErrorViewClickListener mOnErrorViewClickListener;
+    private YfListInterface.OnHeaderViewClickListener mOnHeaderViewClickListener;
+    private YfListInterface.OnFooterViewClickListener mOnFooterViewClickListener;
 
-    public RecyclerViewAdapter(ArrayList<T> data) {
-        this(data, RecyclerViewMode.MODE_DATA, 0);
+    public YfListAdapter(ArrayList<T> data) {
+        this(data, YfListMode.MODE_DATA, 0);
     }
 
-    public RecyclerViewAdapter(ArrayList<T> data, int mode) {
+    public YfListAdapter(ArrayList<T> data, int mode) {
         this(data, mode, 0);
     }
 
-    public RecyclerViewAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
+    public YfListAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
         this(data, null, null, mode, toolBarHeight);
     }
 
-    public RecyclerViewAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
+    public YfListAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
         this.mData = null == data ? new ArrayList<T>() : data;
         this.mHeaders = null == headers ? new ArrayList<Object>() : headers;
         this.mFooters = null == footers ? new ArrayList<Object>() : footers;
-        this.mMode = mData.isEmpty() ? RecyclerViewMode.MODE_EMPTY : mode;
+        this.mMode = mData.isEmpty() ? YfListMode.MODE_EMPTY : mode;
         this.mToolBarHeight = toolBarHeight;
     }
 
     public void setData(ArrayList<T> data) {
-        setData(data, RecyclerViewMode.MODE_DATA);
+        setData(data, YfListMode.MODE_DATA);
     }
 
     public void setData(ArrayList<T> data, int mode) {
         this.mData = null == data ? new ArrayList<T>() : data;
-        this.mMode = mData.isEmpty() ? RecyclerViewMode.MODE_EMPTY : mode;
+        this.mMode = mData.isEmpty() ? YfListMode.MODE_EMPTY : mode;
         this.notifyDataSetChanged();
     }
 
@@ -105,7 +107,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      * @param mode mode
      */
     public void changeMode(int mode) {
-        if (mode < 0 || mode > RecyclerViewMode.MODE_EMPTY) {
+        if (mode < 0 || mode > YfListMode.MODE_EMPTY) {
             mode = 0;
         }
         mMode = mode;
@@ -114,7 +116,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == RecyclerViewMode.MODE_LOADING) {
+        if (viewType == YfListMode.MODE_LOADING) {
             RecyclerView.ViewHolder loadingViewHolder = onCreateLoadingViewHolder(parent);
             //because our toobar is ThemeOverlay, so we should minus toolbar height
             loadingViewHolder.itemView.setLayoutParams(
@@ -122,7 +124,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
             );
             return loadingViewHolder;
         }
-        if (viewType == RecyclerViewMode.MODE_ERROR) {
+        if (viewType == YfListMode.MODE_ERROR) {
             RecyclerView.ViewHolder errorViewHolder = onCreateErrorViewHolder(parent);
             //because our toobar is ThemeOverlay, so we should minus toolbar height
             errorViewHolder.itemView.setLayoutParams(
@@ -143,7 +145,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
             });
             return errorViewHolder;
         }
-        if (viewType == RecyclerViewMode.MODE_EMPTY) {
+        if (viewType == YfListMode.MODE_EMPTY) {
             RecyclerView.ViewHolder emptyViewHolder = onCreateEmptyViewHolder(parent);
             //because our toobar is ThemeOverlay, so we should minus toolbar height
             emptyViewHolder.itemView.setLayoutParams(
@@ -164,7 +166,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
             });
             return emptyViewHolder;
         }
-        if (viewType == RecyclerViewMode.MODE_HEADER_VIEW) {
+        if (viewType == YfListMode.MODE_HEADER_VIEW) {
             RecyclerView.ViewHolder headerViewHolder = onCreateHeaderViewHolder(parent);
             headerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -181,7 +183,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
             });
             return headerViewHolder;
         }
-        if (viewType == RecyclerViewMode.MODE_FOOTER_VIEW) {
+        if (viewType == YfListMode.MODE_FOOTER_VIEW) {
             RecyclerView.ViewHolder footerViewHolder = onCreateFooterViewHolder(parent);
             footerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -232,11 +234,11 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (mMode == RecyclerViewMode.MODE_LOADING) {
+        if (mMode == YfListMode.MODE_LOADING) {
             onBindLoadingViewHolder(holder, position);
-        } else if (mMode == RecyclerViewMode.MODE_ERROR) {
+        } else if (mMode == YfListMode.MODE_ERROR) {
             onBindErrorViewHolder(holder, position);
-        } else if (mMode == RecyclerViewMode.MODE_EMPTY) {
+        } else if (mMode == YfListMode.MODE_EMPTY) {
             onBindEmptyViewHolder(holder, position);
         } else {
             if (position < mHeaders.size()) {
@@ -255,7 +257,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if (mMode == RecyclerViewMode.MODE_DATA) {
+        if (mMode == YfListMode.MODE_DATA) {
             return mData.size() + mHeaders.size() + mFooters.size();
         } else {
             return 1;
@@ -264,22 +266,22 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (mMode == RecyclerViewMode.MODE_LOADING) {
-            return RecyclerViewMode.MODE_LOADING;
+        if (mMode == YfListMode.MODE_LOADING) {
+            return YfListMode.MODE_LOADING;
         }
-        if (mMode == RecyclerViewMode.MODE_ERROR) {
-            return RecyclerViewMode.MODE_ERROR;
+        if (mMode == YfListMode.MODE_ERROR) {
+            return YfListMode.MODE_ERROR;
         }
-        if (mMode == RecyclerViewMode.MODE_EMPTY) {
-            return RecyclerViewMode.MODE_EMPTY;
+        if (mMode == YfListMode.MODE_EMPTY) {
+            return YfListMode.MODE_EMPTY;
         }
         //check what type our position is, based on the assumption that the order is headers > items > footers
         if (position < mHeaders.size()) {
-            return RecyclerViewMode.MODE_HEADER_VIEW;
+            return YfListMode.MODE_HEADER_VIEW;
         } else if (position >= mHeaders.size() + mData.size()) {
-            return RecyclerViewMode.MODE_FOOTER_VIEW;
+            return YfListMode.MODE_FOOTER_VIEW;
         }
-        return RecyclerViewMode.MODE_DATA;
+        return YfListMode.MODE_DATA;
     }
 
     public abstract RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent);
@@ -319,27 +321,27 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
     public void onBindFooterViewHolder(RecyclerView.ViewHolder holder, int position) {
     }
 
-    public void setOnFooterViewClickListener(RecyclerViewInterface.OnFooterViewClickListener onFooterViewClickListener) {
+    public void setOnFooterViewClickListener(YfListInterface.OnFooterViewClickListener onFooterViewClickListener) {
         mOnFooterViewClickListener = onFooterViewClickListener;
     }
 
-    public void setOnItemClickListener(RecyclerViewInterface.OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(YfListInterface.OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 
-    public void setOnItemLongClickListener(RecyclerViewInterface.OnItemLongClickListener onItemLongClickListener) {
+    public void setOnItemLongClickListener(YfListInterface.OnItemLongClickListener onItemLongClickListener) {
         mOnItemLongClickListener = onItemLongClickListener;
     }
 
-    public void setOnEmptyViewClickListener(RecyclerViewInterface.OnEmptyViewClickListener onEmptyViewClickListener) {
+    public void setOnEmptyViewClickListener(YfListInterface.OnEmptyViewClickListener onEmptyViewClickListener) {
         mOnEmptyViewClickListener = onEmptyViewClickListener;
     }
 
-    public void setOnErrorViewClickListener(RecyclerViewInterface.OnErrorViewClickListener onErrorViewClickListener) {
+    public void setOnErrorViewClickListener(YfListInterface.OnErrorViewClickListener onErrorViewClickListener) {
         mOnErrorViewClickListener = onErrorViewClickListener;
     }
 
-    public void setOnHeaderViewClickListener(RecyclerViewInterface.OnHeaderViewClickListener onHeaderViewClickListener) {
+    public void setOnHeaderViewClickListener(YfListInterface.OnHeaderViewClickListener onHeaderViewClickListener) {
         mOnHeaderViewClickListener = onHeaderViewClickListener;
     }
 
@@ -363,8 +365,8 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      * @param header header
      */
     public void addHeader(Object header) {
-        if (mMode != RecyclerViewMode.MODE_DATA) {
-            Log.e("Recycler View Adapter", "error: you can not add header or footer while you are not in data mode");
+        if (mMode != YfListMode.MODE_DATA) {
+            Log.e(TAG, "error: you can not add header or footer while you are not in data mode");
             return;
         }
         if (!mHeaders.contains(header)) {
@@ -417,8 +419,8 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter {
      * @param footer footer
      */
     public void addFooter(Object footer) {
-        if (mMode != RecyclerViewMode.MODE_DATA) {
-            Log.e("Recycler View Adapter", "error: you can not add header or footer while you are not in data mode");
+        if (mMode != YfListMode.MODE_DATA) {
+            Log.e(TAG, "error: you can not add header or footer while you are not in data mode");
             return;
         }
         if (!mFooters.contains(footer)) {

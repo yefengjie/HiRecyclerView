@@ -6,11 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ExpansionLinearLayoutManager extends LinearLayoutManager {
+public class UnfoldLinearLayoutManager extends LinearLayoutManager {
 
     private int[] mMeasuredDimension = new int[2];
 
-    public ExpansionLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+    public UnfoldLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
         super(context, orientation, reverseLayout);
     }
 
