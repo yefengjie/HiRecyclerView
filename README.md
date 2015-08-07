@@ -78,6 +78,12 @@ mRecycler.setAdapter(new DemoAdapter(list_data));
 ### how to enable load more
 
 ```Java
+    mList.enableAutoLoadMore(new YfLoadMoreListener() {
+                @Override
+                public void loadMore() {
+
+                }
+            });
 ```
 
 ### how to use recycler view inside recycler view
@@ -91,7 +97,7 @@ recyclerView.setLayoutManager(layoutManager);
 
 ### change display mode(show loading data,show data,show empty,show error)
 
-show data.if data is empty, empty view will display.
+show data. if data is empty, empty view will display.
 
 ```Java
 mAdapter.setData(mData);
@@ -168,4 +174,6 @@ call adapter's addHeader or addFooter method
 #### 15-7-30  upload to maven center
 
 #### 15-8-5   add recycler view adapter demo
+
+#### 15-8-7   move divider and load more method to library
 
