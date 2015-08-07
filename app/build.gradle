@@ -28,6 +28,6 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
 //    compile 'com.freedom.yefeng:yfrecyclerview:1.0.0'
-//    compile 'com.yefeng:yflistrecyclerview:1.0.0@aar'
-    compile project(':yf_list_recycler_view')
+    compile 'com.yefeng:yf_list_recycler_view:1.0.1@aar'
+//    compile project(':yf_list_recycler_view')
 }
