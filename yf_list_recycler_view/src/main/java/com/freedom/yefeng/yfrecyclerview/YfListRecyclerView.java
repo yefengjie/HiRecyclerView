@@ -24,7 +24,6 @@ public class YfListRecyclerView extends RecyclerView {
     private int mVisibleItemCount, mTotalItemCount, mFirstVisibleItemPosition;
     private LinearLayoutManager mLayoutManager;
     private Adapter mAdapter;
-    private YfLoadMoreListener mLoadMoreListener;
 
     public YfListRecyclerView(Context context) {
         super(context);
@@ -124,8 +123,10 @@ public class YfListRecyclerView extends RecyclerView {
 
     /**
      * enable list view auto load more
+     *
+     * @param loadMoreListener load more listener
      */
-    public void enableAutoLoadMore() {
+    public void enableAutoLoadMore(final YfLoadMoreListener loadMoreListener) {
         addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -137,30 +138,12 @@ public class YfListRecyclerView extends RecyclerView {
                 mTotalItemCount = mLayoutManager.getItemCount();
                 mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
                 if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
-                    loadMore();
+                    if (null != loadMoreListener) {
+                        LogUtil.d(TAG, "loadMore");
+                        loadMoreListener.loadMore();
+                    }
                 }
             }
         });
     }
-
-    /**
-     * load more
-     */
-    public void loadMore() {
-        if (null != mLoadMoreListener) {
-            LogUtil.d(TAG, "loadMore");
-            mLoadMoreListener.loadMore();
-        }
-    }
-
-    /**
-     * set load more listener
-     *
-     * @param loadMoreListener load more listener
-     */
-    public void setLoadMoreListener(YfLoadMoreListener loadMoreListener) {
-        this.mLoadMoreListener = loadMoreListener;
-    }
-
-
 }

@@ -1,23 +1,17 @@
-# YfRecyclerView
-a economic recycler view with functions list below:
+# Yf List Recycler View
+a powerful list recycler view to replace list view, with function belows:
 
-1.add header view
+1.header and footer view
 
-2.add footer view
+2.auto load more
 
-3.auto load more
+3.pull to refresh
 
-4.pull to refresh
+4.list divider
 
-5.empty display
+5.change display mode (data,empty,error)
 
-6.loading display
-
-7.error display
-
-8.divider
-
-9.add recycler view inside recycler view demo
+6.add recycler view inside recycler view demo
 
 ## How To Use
 
@@ -25,44 +19,65 @@ a economic recycler view with functions list below:
 
 include libs in your build.gradle
 
-or see it in maven :https://bintray.com/yefengfreedom/maven/YfRecyclerView/view
+or see it in maven :https://bintray.com/yefengfreedom/maven/yflistrecyclerview/view
 
 ```Java
-   compile 'com.freedom.yefeng:yfrecyclerview:1.0.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.freedom.yefeng:yfrecyclerview:1.0.2'
 ```
 
 
 
 ### sencond
-new a RecyclerViewAdapter in your activity,and override the method whitch you want to use, just like SampleActivity do...
+new a RecyclerViewAdapter, and override the method whitch you want to use, just like SampleActivity do...
 
 ```Java
-mAdapter = new RecyclerViewAdapter(mData) {
-            @Override
-            public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
-                return new SimpleViewHolder(view);
-            }
+public class DemoAdapter extends YfListAdapter<String> {
 
-            @Override
-            public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView) holder.itemView.findViewById(R.id.txt_adapter_item)).setText((String) mData.get(position) + " page is " + mCurrentPage);
-                holder.itemView.setTag(mData.get(position));
-            }
+    public DemoAdapter(ArrayList<String> data) {
+        super(data);
+    }
 
-            @Override
-            public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
+    @Override
+    public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
+        return new ViewHolder(view);
+    }
 
-            @Override
-            public RecyclerView.ViewHolder onCreateLoadingViewHolder(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_loading_material, parent, false);
-                return new SimpleViewHolder(view);
-            }
-        };
-mRecycler.setAdapter(mAdapter);
+    @Override
+    public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
+        return new YfSimpleViewHolder(view);
+    }
+
+    @Override
+    public void onBindDataViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        ((ViewHolder) viewHolder).mText.setText(mData.get(i));
+        viewHolder.itemView.setTag(mData.get(i));
+    }
+
+    private static final class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView mText;
+
+        public ViewHolder(final View itemView) {
+            super(itemView);
+            mText = (TextView) itemView.findViewById(R.id.txt_adapter_item);
+        }
+    }
+}
+mRecycler.setAdapter(new DemoAdapter(list_data));
+```
+
+### how to add divider
+
+```Java
+    mList.setDivider(R.drawable.divider);
+```
+
+### how to enable load more
+
+```Java
 ```
 
 ### how to use recycler view inside recycler view

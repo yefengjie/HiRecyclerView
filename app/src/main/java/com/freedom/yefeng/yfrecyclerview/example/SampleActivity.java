@@ -85,8 +85,7 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
         mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         initAdapter();
         mList.setAdapter(mAdapter);
-        mList.enableAutoLoadMore();
-        mList.setLoadMoreListener(this);
+        mList.enableAutoLoadMore(this);
         mList.setDivider(R.drawable.divider);
     }
 
