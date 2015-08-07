@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.freedom.yefeng.yfrecyclerview.UnfoldLinearLayoutManager;
 import com.freedom.yefeng.yfrecyclerview.YfListAdapter;
+import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
@@ -45,24 +46,25 @@ public class RcyInRcyOutAdapter extends YfListAdapter<String> {
     }
 
     private void showRecycler(ViewHolder holder, ArrayList<String> data) {
-        RecyclerView recyclerView = holder.mRecyclerView;
-        recyclerView.setHasFixedSize(true);
+        YfListRecyclerView list = holder.mList;
+        list.setHasFixedSize(true);
         UnfoldLinearLayoutManager layoutManager = new UnfoldLinearLayoutManager(
                 holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        list.setLayoutManager(layoutManager);
         RcyInRcyInsideAdapter adapter = new RcyInRcyInsideAdapter(data);
-        recyclerView.setAdapter(adapter);
+        list.setAdapter(adapter);
+        list.setDivider(R.drawable.divider);
     }
 
     private static final class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mText;
-        RecyclerView mRecyclerView;
+        YfListRecyclerView mList;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mText = (TextView) itemView.findViewById(R.id.txt_adapter_item);
-            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.recycler);
+            mList = (YfListRecyclerView) itemView.findViewById(R.id.recycler);
         }
     }
 }

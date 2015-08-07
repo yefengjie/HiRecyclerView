@@ -1,1 +1,1 @@
-include ':app', ':yfrecyclerview'
+include ':app', ':yf_list_recycler_view'

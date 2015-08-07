@@ -13,7 +13,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"/>
 
-    <android.support.v7.widget.RecyclerView
+    <com.freedom.yefeng.yfrecyclerview.YfListRecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

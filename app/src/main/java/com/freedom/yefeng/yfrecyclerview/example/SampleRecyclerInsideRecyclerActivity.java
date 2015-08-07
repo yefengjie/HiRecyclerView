@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.freedom.yefeng.yfrecyclerview.YfListView;
+import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.RcyInRcyOutAdapter;
 
 import java.util.ArrayList;
@@ -15,22 +15,19 @@ import java.util.ArrayList;
 @SuppressWarnings("unchecked")
 public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
 
-    private YfListView mList;
-    private LinearLayoutManager mLayoutManager;
-    private RcyInRcyOutAdapter mAdapter;
-    private Toolbar mToolbar;
-    ArrayList<String> mData = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_inside_recycler);
+
+        ArrayList<String> mData = new ArrayList<String>();
         for (int i = 0; i < 5; i++) {
             mData.add("item  " + i);
         }
 
-        mToolbar = (Toolbar) findViewById(R.id.tb);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
         if (null != ab) {
@@ -38,13 +35,12 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        mList = (YfListView) findViewById(R.id.recycler);
-        mList.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mList.setLayoutManager(mLayoutManager);
+        YfListRecyclerView list = (YfListRecyclerView) findViewById(R.id.recycler);
+        list.setHasFixedSize(true);
+        list.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        mAdapter = new RcyInRcyOutAdapter(mData);
-        mList.setAdapter(mAdapter);
+        RcyInRcyOutAdapter adapter = new RcyInRcyOutAdapter(mData);
+        list.setAdapter(adapter);
     }
 
     @Override

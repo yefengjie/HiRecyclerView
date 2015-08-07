@@ -15,7 +15,7 @@ import com.freedom.yefeng.yfrecyclerview.util.LogUtil;
  * github:yefengfreedom
  * this is a list view base on recycler view,with auto load more model,divider
  */
-public class YfListView extends RecyclerView {
+public class YfListRecyclerView extends RecyclerView {
 
     public static final int WRAP_CONTENT = -1;
 
@@ -26,15 +26,15 @@ public class YfListView extends RecyclerView {
     private Adapter mAdapter;
     private YfLoadMoreListener mLoadMoreListener;
 
-    public YfListView(Context context) {
+    public YfListRecyclerView(Context context) {
         super(context);
     }
 
-    public YfListView(Context context, AttributeSet attrs) {
+    public YfListRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public YfListView(Context context, AttributeSet attrs, int defStyle) {
+    public YfListRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -46,15 +46,6 @@ public class YfListView extends RecyclerView {
      */
     public void setDivider(int dividerRes) {
         setDivider(dividerRes, WRAP_CONTENT);
-    }
-
-    /**
-     * set list divider
-     *
-     * @param drawable drawable
-     */
-    public void setDivider(Drawable drawable) {
-        setDivider(drawable, WRAP_CONTENT);
     }
 
     /**
@@ -110,6 +101,15 @@ public class YfListView extends RecyclerView {
         });
     }
 
+    /**
+     * set list divider
+     *
+     * @param drawable drawable
+     */
+    public void setDivider(Drawable drawable) {
+        setDivider(drawable, WRAP_CONTENT);
+    }
+
     @Override
     public void setAdapter(Adapter adapter) {
         this.mAdapter = adapter;
@@ -144,15 +144,6 @@ public class YfListView extends RecyclerView {
     }
 
     /**
-     * set load more listener
-     *
-     * @param loadMoreListener load more listener
-     */
-    public void setLoadMoreListener(YfLoadMoreListener loadMoreListener) {
-        this.mLoadMoreListener = loadMoreListener;
-    }
-
-    /**
      * load more
      */
     public void loadMore() {
@@ -160,6 +151,15 @@ public class YfListView extends RecyclerView {
             LogUtil.d(TAG, "loadMore");
             mLoadMoreListener.loadMore();
         }
+    }
+
+    /**
+     * set load more listener
+     *
+     * @param loadMoreListener load more listener
+     */
+    public void setLoadMoreListener(YfLoadMoreListener loadMoreListener) {
+        this.mLoadMoreListener = loadMoreListener;
     }
 
 

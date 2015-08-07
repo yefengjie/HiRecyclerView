@@ -14,16 +14,15 @@ import android.widget.Toast;
 
 import com.freedom.yefeng.yfrecyclerview.YfListInterface;
 import com.freedom.yefeng.yfrecyclerview.YfListMode;
-import com.freedom.yefeng.yfrecyclerview.YfListView;
+import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.YfLoadMoreListener;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("unchecked")
 public class SampleActivity extends AppCompatActivity implements YfLoadMoreListener {
 
-    private YfListView mList;
+    private YfListRecyclerView mList;
     private SimpleAdapter mAdapter;
     private ArrayList<String> mData = new ArrayList<String>();
 
@@ -81,14 +80,14 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
     }
 
     private void initList() {
-        mList = (YfListView) findViewById(R.id.recycler);
+        mList = (YfListRecyclerView) findViewById(R.id.recycler);
         mList.setHasFixedSize(true);
         mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         initAdapter();
         mList.setAdapter(mAdapter);
         mList.enableAutoLoadMore();
         mList.setLoadMoreListener(this);
-        mList.setDivider(R.drawable.divider_horizontal_bright_opaque);
+        mList.setDivider(R.drawable.divider);
     }
 
     @Override
@@ -170,6 +169,12 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    /**
+     * add test method
+     *
+     * @param item menu item
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

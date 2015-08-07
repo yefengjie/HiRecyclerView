@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.freedom.yefeng.yfrecyclerview.YfListView;
+import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.DemoAdapter;
 
 import java.util.ArrayList;
@@ -17,16 +17,13 @@ import java.util.ArrayList;
  * github:yefengfreedom
  */
 public class SampleAdapterDemoActivity extends AppCompatActivity {
-    private YfListView mList;
-    private LinearLayoutManager mLayoutManager;
-    private DemoAdapter mAdapter;
-    private ArrayList<String> mData = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample_adapter_demo);
 
+        ArrayList<String> mData = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             mData.add("item  " + i);
         }
@@ -40,13 +37,12 @@ public class SampleAdapterDemoActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        mList = (YfListView) findViewById(R.id.recycler);
+        YfListRecyclerView mList = (YfListRecyclerView) findViewById(R.id.recycler);
         mList.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mList.setLayoutManager(mLayoutManager);
+        mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        mAdapter = new DemoAdapter(mData);
-        mList.setAdapter(mAdapter);
+        DemoAdapter adapter = new DemoAdapter(mData);
+        mList.setAdapter(adapter);
     }
 
     @Override

@@ -2,17 +2,17 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.0"
+version = "1.0.1"
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-    resourcePrefix "yfrv_"
+    resourcePrefix "yflrv_"
 
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 6
+        versionCode 1
         versionName version
     }
     buildTypes {
@@ -97,7 +97,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "YfRecyclerView"                // project name in jcenter
+        name = "yf_list_recycler_view"                // project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
