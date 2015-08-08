@@ -1,5 +1,5 @@
 # Yf List Recycler View
-a powerful list recycler view to replace list view, with function belows:
+a powerful list recycler view to replace list view, with function belows: 
 
 1.header and footer view
 
