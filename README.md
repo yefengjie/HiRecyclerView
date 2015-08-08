@@ -23,7 +23,7 @@ or see it in maven :https://bintray.com/yefengfreedom/maven/yflistrecyclerview/v
 
 ```Java
     compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile 'com.yefeng:yf_list_recycler_view:1.0.2'
+    compile 'com.yefeng:yf_list_recycler_view:1.1.0'
 ```
 
 
