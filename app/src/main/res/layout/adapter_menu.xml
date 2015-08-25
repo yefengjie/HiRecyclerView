@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/default_ui_margin_large"
     android:layout_marginRight="@dimen/default_ui_margin_large"
-    android:layout_marginTop="@dimen/default_ui_margin_large"
+    android:layout_marginTop="@dimen/default_ui_margin"
     app:cardBackgroundColor="@color/accent"
-    app:cardCornerRadius="@dimen/default_ui_margin"
-    app:cardMaxElevation="@dimen/default_ui_margin">
+    app:cardCornerRadius="@dimen/default_ui_margin_small"
+    app:cardMaxElevation="@dimen/default_ui_margin_small">
 
     <TextView
         android:id="@+id/btn"
