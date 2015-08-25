@@ -28,7 +28,7 @@ or see it in maven :https://bintray.com/yefengfreedom/maven/yflistrecyclerview/v
 
 
 
-### sencond
+### second
 new a RecyclerViewAdapter, and override the method whitch you want to use, just like SampleActivity do...
 
 ```Java
