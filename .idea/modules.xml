@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/YfRecycleView.iml" filepath="$PROJECT_DIR$/YfRecycleView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YfRecyclerListView.iml" filepath="$PROJECT_DIR$/YfRecyclerListView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/yf_list_recycler_view/yf_list_recycler_view.iml" filepath="$PROJECT_DIR$/yf_list_recycler_view/yf_list_recycler_view.iml" />
     </modules>
