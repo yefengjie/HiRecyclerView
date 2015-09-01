@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2175257946122270/9613766541</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-2175257946122270/5043966145</string>
 </resources>

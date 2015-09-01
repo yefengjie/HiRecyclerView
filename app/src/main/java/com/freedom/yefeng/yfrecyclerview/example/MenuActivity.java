@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +17,10 @@ import android.widget.ImageView;
 import com.freedom.yefeng.yfrecyclerview.YfListInterface;
 import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.MenuAdapter;
+import com.freedom.yefeng.yfrecyclerview.example.base.AppApplication;
 import com.freedom.yefeng.yfrecyclerview.example.base.AppInfo;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -88,5 +92,15 @@ public class MenuActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(new Intent(this, Ad2Activity.class));
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
