@@ -41,4 +41,10 @@
         android:orderInCategory="100"
         android:title="remove footer"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_switch_list_and_grid"
+        android:orderInCategory="100"
+        android:title="Switch List and Grid"
+        app:showAsAction="never"/>
 </menu>

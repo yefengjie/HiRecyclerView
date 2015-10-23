@@ -43,12 +43,12 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
     //you can use AppBarLayout.getMeasuredHeight method to get toobar height.
     protected int mToolBarHeight;
 
-    private YfListInterface.OnItemClickListener mOnItemClickListener;
-    private YfListInterface.OnItemLongClickListener mOnItemLongClickListener;
-    private YfListInterface.OnEmptyViewClickListener mOnEmptyViewClickListener;
-    private YfListInterface.OnErrorViewClickListener mOnErrorViewClickListener;
-    private YfListInterface.OnHeaderViewClickListener mOnHeaderViewClickListener;
-    private YfListInterface.OnFooterViewClickListener mOnFooterViewClickListener;
+    protected YfListInterface.OnItemClickListener mOnItemClickListener;
+    protected YfListInterface.OnItemLongClickListener mOnItemLongClickListener;
+    protected YfListInterface.OnEmptyViewClickListener mOnEmptyViewClickListener;
+    protected YfListInterface.OnErrorViewClickListener mOnErrorViewClickListener;
+    protected YfListInterface.OnHeaderViewClickListener mOnHeaderViewClickListener;
+    protected YfListInterface.OnFooterViewClickListener mOnFooterViewClickListener;
 
     public YfListAdapter(ArrayList<T> data) {
         this(data, YfListMode.MODE_DATA, 0);
@@ -247,10 +247,10 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
                 }
             } else if (position >= mHeaders.size() + mData.size()) {
                 if (mFooters.size() > 0) {
-                    onBindFooterViewHolder(holder, position - mHeaders.size() - mData.size());
+                    onBindFooterViewHolder(holder, getDataOffsetPosition(position) - mData.size());
                 }
             } else {
-                onBindDataViewHolder(holder, position - mHeaders.size());
+                onBindDataViewHolder(holder, getDataOffsetPosition(position));
             }
         }
     }
@@ -466,6 +466,11 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
             mFooters.clear();
             notifyDataSetChanged();
         }
+    }
+
+    protected int getDataOffsetPosition(int position)
+    {
+        return position - mHeaders.size();
     }
 }
 

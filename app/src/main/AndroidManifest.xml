@@ -13,6 +13,9 @@
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleRecyclerInsideRecyclerActivity"
             android:label="RecyclerListInsideRecyclerList"/>
         <activity
+            android:name="com.freedom.yefeng.yfrecyclerview.example.SampleGridActivity"
+            android:label="YfSampleGridActivity"/>
+        <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleActivity"
             android:label="YfRecyclerListView"/>
         <activity
