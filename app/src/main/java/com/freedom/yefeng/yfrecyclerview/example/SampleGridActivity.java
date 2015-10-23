@@ -21,6 +21,7 @@ import com.freedom.yefeng.yfrecyclerview.YfLoadMoreListener;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleMultiTypeAdapter;
 import com.freedom.yefeng.yfrecyclerview.util.YfListItemType;
+import com.freedom.yefeng.yfrecyclerview.util.YfSpanSizeLookup;
 
 import java.util.ArrayList;
 
@@ -92,15 +93,7 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
     private GridLayoutManager getGridLayoutManager()
     {
         GridLayoutManager manager = new GridLayoutManager(getApplicationContext(), 3);
-        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int i) {
-                if (i == 0) {
-                    return 3;
-                }
-                return 1;
-            }
-        });
+        manager.setSpanSizeLookup(new YfSpanSizeLookup(mAdapter, 3));
         return manager;
     }
 
@@ -134,8 +127,8 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
         mList = (YfListRecyclerView) findViewById(R.id.recycler);
         mList.setHasFixedSize(true);
 
-        changeLayoutManage(TYPE_LINEAR);
         initAdapter();
+        changeLayoutManage(TYPE_LINEAR);
         mList.setAdapter(mAdapter);
         mList.enableAutoLoadMore(this);
         mList.setDivider(R.drawable.divider);
