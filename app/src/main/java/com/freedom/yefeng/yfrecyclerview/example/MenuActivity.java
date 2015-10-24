@@ -73,10 +73,9 @@ public class MenuActivity extends AppCompatActivity {
                     startActivity(new Intent(MenuActivity.this, SampleRecyclerInsideRecyclerActivity.class));
                 } else if ("Yf List Recycler Adapter Demo".equals(o.toString())) {
                     startActivity(new Intent(MenuActivity.this, SampleAdapterDemoActivity.class));
-                } else if("Yf List And Grid Demo".equals(o.toString())){
+                } else if ("Yf List And Grid Demo".equals(o.toString())) {
                     startActivity(new Intent(MenuActivity.this, SampleGridActivity.class));
-                }
-                else {
+                } else {
                     startActivity(new Intent(MenuActivity.this, SampleActivity.class));
                 }
             }

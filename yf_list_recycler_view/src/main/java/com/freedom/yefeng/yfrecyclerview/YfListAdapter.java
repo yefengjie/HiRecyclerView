@@ -70,10 +70,6 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
         this.mToolBarHeight = toolBarHeight;
     }
 
-    public void setData(ArrayList<T> data) {
-        setData(data, YfListMode.MODE_DATA);
-    }
-
     public void setData(ArrayList<T> data, int mode) {
         this.mData = null == data ? new ArrayList<T>() : data;
         this.mMode = mData.isEmpty() ? YfListMode.MODE_EMPTY : mode;
@@ -91,6 +87,10 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
 
     public ArrayList<T> getData() {
         return mData;
+    }
+
+    public void setData(ArrayList<T> data) {
+        setData(data, YfListMode.MODE_DATA);
     }
 
     public ArrayList<Object> getHeaders() {
@@ -468,8 +468,7 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
-    protected int getDataOffsetPosition(int position)
-    {
+    protected int getDataOffsetPosition(int position) {
         return position - mHeaders.size();
     }
 }

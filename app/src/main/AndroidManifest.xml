@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.freedom.yefeng.yfrecyclerview.example"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.freedom.yefeng.yfrecyclerview.example">
 
     <application
         android:name="com.freedom.yefeng.yfrecyclerview.example.base.AppApplication"
@@ -11,24 +10,24 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleRecyclerInsideRecyclerActivity"
-            android:label="RecyclerListInsideRecyclerList"/>
+            android:label="RecyclerListInsideRecyclerList" />
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleGridActivity"
-            android:label="YfSampleGridActivity"/>
+            android:label="YfSampleGridActivity" />
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleActivity"
-            android:label="YfRecyclerListView"/>
+            android:label="YfRecyclerListView" />
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.SampleAdapterDemoActivity"
-            android:label="YfListAdapterDemo"/>
+            android:label="YfListAdapterDemo" />
         <activity
             android:name="com.freedom.yefeng.yfrecyclerview.example.MenuActivity"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

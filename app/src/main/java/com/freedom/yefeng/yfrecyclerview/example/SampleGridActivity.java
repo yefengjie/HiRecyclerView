@@ -18,7 +18,6 @@ import com.freedom.yefeng.yfrecyclerview.YfListInterface;
 import com.freedom.yefeng.yfrecyclerview.YfListMode;
 import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.YfLoadMoreListener;
-import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleMultiTypeAdapter;
 import com.freedom.yefeng.yfrecyclerview.util.YfListItemType;
 import com.freedom.yefeng.yfrecyclerview.util.YfSpanSizeLookup;
@@ -89,32 +88,28 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
     }
 
 
-
-    private GridLayoutManager getGridLayoutManager()
-    {
+    private GridLayoutManager getGridLayoutManager() {
         GridLayoutManager manager = new GridLayoutManager(getApplicationContext(), 3);
         manager.setSpanSizeLookup(new YfSpanSizeLookup(mAdapter, 3));
         return manager;
     }
 
-    private LinearLayoutManager getLinearLayoutManager()
-    {
+    private LinearLayoutManager getLinearLayoutManager() {
         return new LinearLayoutManager(getApplicationContext());
     }
 
 
-    private void changeLayoutManage(int type)
-    {
-        if(managerType != type){
+    private void changeLayoutManage(int type) {
+        if (managerType != type) {
             managerType = type;
             RecyclerView.LayoutManager layoutManager = null;
 
-            switch(type){
-                case TYPE_LINEAR:{
+            switch (type) {
+                case TYPE_LINEAR: {
                     layoutManager = getLinearLayoutManager();
                     break;
                 }
-                case TYPE_GRID:{
+                case TYPE_GRID: {
                     layoutManager = getGridLayoutManager();
                     break;
                 }
@@ -133,7 +128,6 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
         mList.enableAutoLoadMore(this);
         mList.setDivider(R.drawable.divider);
     }
-
 
 
     @Override
@@ -214,7 +208,7 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_grid, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -291,7 +285,7 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
             case R.id.action_switch_list_and_grid:
                 int type = managerType;
                 type++;
-                if(type > TYPE_GRID){
+                if (type > TYPE_GRID) {
                     type = TYPE_LINEAR;
                 }
                 changeLayoutManage(type);
@@ -305,16 +299,14 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
-    private void addDummyData()
-    {
+    private void addDummyData() {
         for (int i = 0; i < 20; i++) {
             int type = SimpleMultiTypeAdapter.BASE_TYPE + i % SimpleMultiTypeAdapter.NUMBER_OF_TYPE;
             mData.add(new DemoData("item  " + i, type));
         }
     }
 
-    public static class DemoData implements YfListItemType
-    {
+    public static class DemoData implements YfListItemType {
         String data;
         int type;
 

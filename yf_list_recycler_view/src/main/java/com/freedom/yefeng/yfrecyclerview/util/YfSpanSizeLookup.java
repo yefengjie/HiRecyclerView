@@ -12,8 +12,7 @@ public class YfSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
     YfListAdapter adapter;
     int spanCount;
 
-    public YfSpanSizeLookup(YfListAdapter adapter, int spanCount)
-    {
+    public YfSpanSizeLookup(YfListAdapter adapter, int spanCount) {
         this.adapter = adapter;
         this.spanCount = spanCount;
     }

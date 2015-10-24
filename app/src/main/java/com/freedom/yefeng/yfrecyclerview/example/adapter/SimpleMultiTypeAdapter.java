@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.YfListAdapter;
 import com.freedom.yefeng.yfrecyclerview.YfMultiTypeListAdapter;
 import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
@@ -38,13 +37,11 @@ public class SimpleMultiTypeAdapter extends YfMultiTypeListAdapter<SampleGridAct
     public RecyclerView.ViewHolder onCreateCustomDataViewHolder(ViewGroup parent, int viewType) {
 
         int layoutRes = R.layout.grid_type_4;
-        if(viewType == BASE_TYPE){
+        if (viewType == BASE_TYPE) {
             layoutRes = R.layout.grid_type_1;
-        }
-        else if(viewType == BASE_TYPE + 1){
+        } else if (viewType == BASE_TYPE + 1) {
             layoutRes = R.layout.grid_type_2;
-        }
-        else if(viewType == BASE_TYPE + 2){
+        } else if (viewType == BASE_TYPE + 2) {
             layoutRes = R.layout.grid_type_3;
         }
 

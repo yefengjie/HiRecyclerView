@@ -13,14 +13,14 @@ import java.util.ArrayList;
 /**
  * Created by KingWu on 23/10/15
  * github: github.com/KingWu
- *
+ * <p/>
  * Remark : Reverse Item Type
- *      MODE_DATA = 0
- *      MODE_LOADING = 1
- *      MODE_ERROR = 2
- *      MODE_EMPTY = 3
- *      MODE_HEADER_VIEW = 4
- *      MODE_FOOTER_VIEW = 5
+ * MODE_DATA = 0
+ * MODE_LOADING = 1
+ * MODE_ERROR = 2
+ * MODE_EMPTY = 3
+ * MODE_HEADER_VIEW = 4
+ * MODE_FOOTER_VIEW = 5
  */
 public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends YfListAdapter<T> {
 
@@ -48,7 +48,7 @@ public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends Y
         Log.d("", "itemType : " + itemType);
 
 
-        if(itemType != YfListMode.MODE_DATA){
+        if (itemType != YfListMode.MODE_DATA) {
             return itemType;
         }
         return super.getData().get(getDataOffsetPosition(position)).getItemType();
@@ -152,10 +152,9 @@ public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends Y
         }
 
         RecyclerView.ViewHolder dataViewHolder = null;
-        if(viewType == YfListMode.MODE_DATA){
+        if (viewType == YfListMode.MODE_DATA) {
             dataViewHolder = onCreateDataViewHolder(parent);
-        }
-        else{
+        } else {
             dataViewHolder = onCreateCustomDataViewHolder(parent, viewType);
         }
 
