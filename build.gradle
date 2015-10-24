@@ -3,7 +3,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven{
+        maven {
             url 'https://dl.bintray.com/yefengfreedom/maven'
         }
     }

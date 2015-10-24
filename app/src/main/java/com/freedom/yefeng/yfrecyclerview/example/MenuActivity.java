@@ -61,6 +61,7 @@ public class MenuActivity extends AppCompatActivity {
         actions.add("Yf List Recycler View");
         actions.add("Recycler List Inside Recycler List");
         actions.add("Yf List Recycler Adapter Demo");
+        actions.add("Yf List And Grid Demo");
         MenuAdapter adapter = new MenuAdapter(actions);
         mList.setHasFixedSize(true);
         mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -72,6 +73,8 @@ public class MenuActivity extends AppCompatActivity {
                     startActivity(new Intent(MenuActivity.this, SampleRecyclerInsideRecyclerActivity.class));
                 } else if ("Yf List Recycler Adapter Demo".equals(o.toString())) {
                     startActivity(new Intent(MenuActivity.this, SampleAdapterDemoActivity.class));
+                } else if ("Yf List And Grid Demo".equals(o.toString())) {
+                    startActivity(new Intent(MenuActivity.this, SampleGridActivity.class));
                 } else {
                     startActivity(new Intent(MenuActivity.this, SampleActivity.class));
                 }
