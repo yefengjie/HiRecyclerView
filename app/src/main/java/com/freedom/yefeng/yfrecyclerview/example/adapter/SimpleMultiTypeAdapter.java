@@ -13,19 +13,32 @@ import com.freedom.yefeng.yfrecyclerview.example.R;
 import com.freedom.yefeng.yfrecyclerview.example.SampleGridActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by KingWu on 23/10/15
  * github: github.com/KingWu
  */
-public class SimpleMultiTypeAdapter extends YfMultiTypeListAdapter<SampleGridActivity.DemoData> {
+public class SimpleMultiTypeAdapter extends YfMultiTypeListAdapter{
 
     public final static int BASE_TYPE = 10;
     public final static int NUMBER_OF_TYPE = 4;
+    List<SampleGridActivity.DemoData> mData;
 
 
     public SimpleMultiTypeAdapter(ArrayList<SampleGridActivity.DemoData> data) {
         super(data);
+        this.mData = data;
+    }
+
+    @Override
+    public int getCustomItemType(int position) {
+        return mData.get(position).getItemType();
+    }
+
+    @Override
+    public int getDataCount() {
+        return mData.size();
     }
 
     @Override
@@ -83,7 +96,6 @@ public class SimpleMultiTypeAdapter extends YfMultiTypeListAdapter<SampleGridAct
         ((FooterViewHolder) holder).mText.setText(footer);
         holder.itemView.setTag(footer);
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateErrorViewHolder(ViewGroup parent) {

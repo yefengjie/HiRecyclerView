@@ -18,9 +18,7 @@ import com.freedom.yefeng.yfrecyclerview.YfListInterface;
 import com.freedom.yefeng.yfrecyclerview.YfListMode;
 import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.YfLoadMoreListener;
-import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleMultiTypeAdapter;
-import com.freedom.yefeng.yfrecyclerview.util.YfListItemType;
 import com.freedom.yefeng.yfrecyclerview.util.YfSpanSizeLookup;
 
 import java.util.ArrayList;
@@ -141,7 +139,7 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
         if (mLoadingLock) {
             return;
         }
-        if (mAdapter.getData().size() < mTotalDataCount && mAdapter.getData().size() > 0) {
+        if (mAdapter.getDataCount() < mTotalDataCount && mAdapter.getDataCount() > 0) {
             // has more
             mLoadingLock = true;
             if (!mAdapter.getFooters().contains("loading...")) {
@@ -158,7 +156,8 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
                         String title = "item  " + (20 * (mCurrentPage - 1) + i);
                         moreData.add(new DemoData(title, type));
                     }
-                    mAdapter.addData(moreData);
+                    mData.addAll(moreData);
+                    mAdapter.notifyCustomDataSetChanged();
                     mLoadingLock = false;
                 }
             }, 3000);
@@ -274,7 +273,8 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
                 footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
-                mAdapter.setData(null);
+                mData.clear();
+                mAdapter.notifyAllDataSetChanged();
                 return true;
             case R.id.action_set_data:
                 mCurrentPage = 1;
@@ -286,7 +286,8 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
                 footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
-                mAdapter.setData(mData);
+
+                mAdapter.notifyCustomDataSetChanged();
                 return true;
             case R.id.action_switch_list_and_grid:
                 int type = managerType;
@@ -295,7 +296,7 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
                     type = TYPE_LINEAR;
                 }
                 changeLayoutManage(type);
-                mAdapter.notifyDataSetChanged();
+                mAdapter.notifyAllDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -313,7 +314,7 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
         }
     }
 
-    public static class DemoData implements YfListItemType
+    public static class DemoData
     {
         String data;
         int type;
@@ -327,7 +328,6 @@ public class SampleGridActivity extends AppCompatActivity implements YfLoadMoreL
             return data;
         }
 
-        @Override
         public int getItemType() {
             return this.type;
         }

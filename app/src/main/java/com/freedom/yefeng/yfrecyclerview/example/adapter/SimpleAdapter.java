@@ -11,15 +11,24 @@ import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class SimpleAdapter extends YfListAdapter<String> {
+public class SimpleAdapter extends YfListAdapter {
+
+    List<String> mData;
 
     public SimpleAdapter(ArrayList<String> data) {
         super(data);
+        this.mData = data;
+    }
+
+    @Override
+    public int getDataCount() {
+        return null != this.mData ? this.mData.size() : 0;
     }
 
     @Override
@@ -66,7 +75,6 @@ public class SimpleAdapter extends YfListAdapter<String> {
         ((FooterViewHolder) holder).mText.setText(footer);
         holder.itemView.setTag(footer);
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateErrorViewHolder(ViewGroup parent) {

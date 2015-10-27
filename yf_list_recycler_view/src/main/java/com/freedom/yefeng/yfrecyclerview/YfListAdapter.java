@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yefeng on 7/24/15.
@@ -15,14 +16,10 @@ import java.util.ArrayList;
  * if you want to enable each views, you should Override each onCreateViewHolder method and onBindViewHolder method
  */
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
+public abstract class YfListAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = "YfListAdapter";
 
-    /**
-     * data set
-     */
-    public ArrayList<T> mData;
     /**
      * headers
      */
@@ -50,47 +47,23 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
     protected YfListInterface.OnHeaderViewClickListener mOnHeaderViewClickListener;
     protected YfListInterface.OnFooterViewClickListener mOnFooterViewClickListener;
 
-    public YfListAdapter(ArrayList<T> data) {
+    public YfListAdapter(List<?> data) {
         this(data, YfListMode.MODE_DATA, 0);
     }
 
-    public YfListAdapter(ArrayList<T> data, int mode) {
+    public YfListAdapter(List<?> data, int mode) {
         this(data, mode, 0);
     }
 
-    public YfListAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
+    public YfListAdapter(List<?> data, int mode, int toolBarHeight) {
         this(data, null, null, mode, toolBarHeight);
     }
 
-    public YfListAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
-        this.mData = null == data ? new ArrayList<T>() : data;
+    public YfListAdapter(List<?> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
         this.mHeaders = null == headers ? new ArrayList<Object>() : headers;
         this.mFooters = null == footers ? new ArrayList<Object>() : footers;
-        this.mMode = mData.isEmpty() ? YfListMode.MODE_EMPTY : mode;
+        this.mMode = null == data ? YfListMode.MODE_EMPTY : (0 == data.size() ? YfListMode.MODE_EMPTY : mode);
         this.mToolBarHeight = toolBarHeight;
-    }
-
-    public void setData(ArrayList<T> data) {
-        setData(data, YfListMode.MODE_DATA);
-    }
-
-    public void setData(ArrayList<T> data, int mode) {
-        this.mData = null == data ? new ArrayList<T>() : data;
-        this.mMode = mData.isEmpty() ? YfListMode.MODE_EMPTY : mode;
-        this.notifyDataSetChanged();
-    }
-
-    public void addData(ArrayList<T> data) {
-        if (null == data || data.isEmpty()) {
-            return;
-        }
-        int startPosition = mData.size() + mHeaders.size();
-        this.mData.addAll(data);
-        this.notifyItemRangeInserted(startPosition, data.size());
-    }
-
-    public ArrayList<T> getData() {
-        return mData;
     }
 
     public ArrayList<Object> getHeaders() {
@@ -245,9 +218,9 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
                 if (mHeaders.size() > 0) {
                     onBindHeaderViewHolder(holder, position);
                 }
-            } else if (position >= mHeaders.size() + mData.size()) {
+            } else if (position >= mHeaders.size() + getDataCount()) {
                 if (mFooters.size() > 0) {
-                    onBindFooterViewHolder(holder, getDataOffsetPosition(position) - mData.size());
+                    onBindFooterViewHolder(holder, getDataOffsetPosition(position) - getDataCount());
                 }
             } else {
                 onBindDataViewHolder(holder, getDataOffsetPosition(position));
@@ -258,7 +231,7 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         if (mMode == YfListMode.MODE_DATA) {
-            return mData.size() + mHeaders.size() + mFooters.size();
+            return getDataCount() + mHeaders.size() + mFooters.size();
         } else {
             return 1;
         }
@@ -278,7 +251,7 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
         //check what type our position is, based on the assumption that the order is headers > items > footers
         if (position < mHeaders.size()) {
             return YfListMode.MODE_HEADER_VIEW;
-        } else if (position >= mHeaders.size() + mData.size()) {
+        } else if (position >= mHeaders.size() + getDataCount()) {
             return YfListMode.MODE_FOOTER_VIEW;
         }
         return YfListMode.MODE_DATA;
@@ -359,6 +332,34 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
         return mHeaders.size();
     }
 
+    public abstract int getDataCount();
+
+    /**
+     * Notice headers, footers and custom data set to update UI
+     */
+    public void notifyAllDataSetChanged()
+    {
+        if(autoChangeMode()){
+            return;
+        }
+
+        this.notifyDataSetChanged();
+    }
+
+    /**
+     * Notice all custom data set to update UI
+     */
+    public void notifyCustomDataSetChanged()
+    {
+        if(autoChangeMode()){
+            return;
+        }
+
+        int dataCount = getDataCount();
+        int startPosition = dataCount + mHeaders.size();
+        this.notifyItemRangeInserted(startPosition, dataCount);
+    }
+
     /**
      * add a header to the adapter
      *
@@ -426,7 +427,7 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
         if (!mFooters.contains(footer)) {
             mFooters.add(footer);
             //animate
-            notifyItemInserted(mHeaders.size() + mData.size() + mFooters.size() - 1);
+            notifyItemInserted(mHeaders.size() + getDataCount() + mFooters.size() - 1);
         }
     }
 
@@ -440,7 +441,7 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
             int position = mFooters.indexOf(footer);
             mFooters.remove(position);
             //animate
-            notifyItemRemoved(mHeaders.size() + mData.size() + position);
+            notifyItemRemoved(mHeaders.size() + getDataCount() + position);
         }
     }
 
@@ -453,7 +454,7 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
         if (mFooters.size() > 0 && position < mFooters.size()) {
             mFooters.remove(position);
             //animate
-            notifyItemRemoved(mHeaders.size() + mData.size() + position);
+            notifyItemRemoved(mHeaders.size() + getDataCount() + position);
         }
     }
 
@@ -471,6 +472,21 @@ public abstract class YfListAdapter<T> extends RecyclerView.Adapter {
     protected int getDataOffsetPosition(int position)
     {
         return position - mHeaders.size();
+    }
+
+    private boolean autoChangeMode(){
+        int dataCount = getDataCount();
+        if (dataCount == 0) {
+            changeMode(YfListMode.MODE_EMPTY);
+            return true;
+        }
+        else{
+            if(YfListMode.MODE_EMPTY == mMode){
+                changeMode(YfListMode.MODE_DATA);
+                return true;
+            }
+        }
+        return false;
     }
 }
 

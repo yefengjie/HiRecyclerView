@@ -2,13 +2,11 @@ package com.freedom.yefeng.yfrecyclerview;
 
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.freedom.yefeng.yfrecyclerview.util.YfListItemType;
-
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by KingWu on 23/10/15
@@ -22,21 +20,21 @@ import java.util.ArrayList;
  *      MODE_HEADER_VIEW = 4
  *      MODE_FOOTER_VIEW = 5
  */
-public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends YfListAdapter<T> {
+public abstract class YfMultiTypeListAdapter extends YfListAdapter {
 
-    public YfMultiTypeListAdapter(ArrayList<T> data) {
+    public YfMultiTypeListAdapter(List<?> data) {
         super(data);
     }
 
-    public YfMultiTypeListAdapter(ArrayList<T> data, int mode) {
+    public YfMultiTypeListAdapter(List<?> data, int mode) {
         super(data, mode);
     }
 
-    public YfMultiTypeListAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
+    public YfMultiTypeListAdapter(List<?> data, int mode, int toolBarHeight) {
         super(data, mode, toolBarHeight);
     }
 
-    public YfMultiTypeListAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
+    public YfMultiTypeListAdapter(List<?> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
         super(data, headers, footers, mode, toolBarHeight);
     }
 
@@ -44,14 +42,10 @@ public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends Y
     public int getItemViewType(int position) {
         int itemType = super.getItemViewType(position);
 
-        Log.d("", "position : " + position);
-        Log.d("", "itemType : " + itemType);
-
-
         if(itemType != YfListMode.MODE_DATA){
             return itemType;
         }
-        return super.getData().get(getDataOffsetPosition(position)).getItemType();
+        return getCustomItemType(getDataOffsetPosition(position));
     }
 
     @Override
@@ -59,7 +53,7 @@ public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends Y
         super.onBindViewHolder(holder, position);
 
         int headerCount = mHeaders.size();
-        if (position >= headerCount && position < headerCount + mData.size()) {
+        if (position >= headerCount && position < headerCount + getDataCount()) {
             onBindCustomDataViewHolder(holder, getDataOffsetPosition(position));
         }
     }
@@ -189,6 +183,8 @@ public abstract class YfMultiTypeListAdapter<T extends YfListItemType> extends Y
         });
         return dataViewHolder;
     }
+
+    public abstract int getCustomItemType(int position);
 
     public abstract void onBindCustomDataViewHolder(RecyclerView.ViewHolder holder, int position);
 

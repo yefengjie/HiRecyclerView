@@ -94,7 +94,7 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
         if (mLoadingLock) {
             return;
         }
-        if (mAdapter.getData().size() < mTotalDataCount && mAdapter.getData().size() > 0) {
+        if (mAdapter.getDataCount() < mTotalDataCount && mAdapter.getDataCount() > 0) {
             // has more
             mLoadingLock = true;
             if (!mAdapter.getFooters().contains("loading...")) {
@@ -108,7 +108,8 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
                     for (int i = 0; i < 20; i++) {
                         moreData.add("item  " + (20 * (mCurrentPage - 1) + i));
                     }
-                    mAdapter.addData(moreData);
+                    mData.addAll(moreData);
+                    mAdapter.notifyCustomDataSetChanged();
                     mLoadingLock = false;
                 }
             }, 3000);
@@ -224,7 +225,8 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
                 footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
-                mAdapter.setData(null);
+                mData.clear();
+                mAdapter.notifyAllDataSetChanged();
                 return true;
             case R.id.action_set_data:
                 mCurrentPage = 1;
@@ -236,7 +238,7 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
                 footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
-                mAdapter.setData(mData);
+                mAdapter.notifyAllDataSetChanged();
                 return true;
 
         }

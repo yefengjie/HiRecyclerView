@@ -24,7 +24,7 @@ public class YfSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
         int headerCount = adapter.getHeaderCount();
         if (position < headerCount) {
             return spanCount;
-        } else if (position >= headerCount + adapter.getData().size()) {
+        } else if (position >= headerCount + adapter.getDataCount()) {
             return spanCount;
         }
         return 1;
