@@ -25,7 +25,7 @@ public class YfListRecyclerView extends RecyclerView {
     private LinearLayoutManager mLayoutManager;
     private Adapter mAdapter;
     private YfLoadMoreListener yfLoadMoreListener;
-
+    private boolean mLoadingLock = false;
 
     public YfListRecyclerView(Context context) {
         super(context);
@@ -43,6 +43,10 @@ public class YfListRecyclerView extends RecyclerView {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+            if(mLoadingLock){
+               return;
+            }
+
             if (null == mLayoutManager || null == mAdapter) {
                 return;
             }
@@ -50,6 +54,7 @@ public class YfListRecyclerView extends RecyclerView {
             mTotalItemCount = mLayoutManager.getItemCount();
             mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
             if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
+                mLoadingLock = true;
                 if (null != yfLoadMoreListener) {
                     LogUtil.d(TAG, "loadMore");
                     yfLoadMoreListener.loadMore();
@@ -141,6 +146,10 @@ public class YfListRecyclerView extends RecyclerView {
     public void setLayoutManager(LayoutManager layout) {
         this.mLayoutManager = (LinearLayoutManager) layout;
         super.setLayoutManager(this.mLayoutManager);
+    }
+
+    public void disableLoadingLock() {
+        this.mLoadingLock = false;
     }
 
     /**
