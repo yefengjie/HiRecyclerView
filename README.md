@@ -108,13 +108,13 @@ mAdapter.setData(mData);
 show loading
 
 ```Java
-mAdapter.changeMode(RecyclerViewMode.MODE_LOADING);
+mAdapter.changeMode(YfListMode.MODE_LOADING);
 ```
 
 show error
 
 ```Java
-mAdapter.changeMode(RecyclerViewMode.MODE_ERROR)
+mAdapter.changeMode(YfListMode.MODE_ERROR)
 ```
 
 ### add header or footer
