@@ -45,7 +45,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.freedom.yefeng.yfrecyclerview.YfListRecyclerView
+    <com.freedom.yefeng.yfrecyclerview.HiRecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

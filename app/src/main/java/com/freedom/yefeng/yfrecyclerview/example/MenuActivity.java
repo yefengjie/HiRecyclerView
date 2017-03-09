@@ -13,8 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.freedom.yefeng.yfrecyclerview.YfListInterface;
-import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
+import com.freedom.yefeng.yfrecyclerview.HiInterface;
+import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.MenuAdapter;
 import com.freedom.yefeng.yfrecyclerview.example.base.AppInfo;
 
@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     Toolbar mTb;
     CollapsingToolbarLayout mCtl;
     CoordinatorLayout mCl;
-    YfListRecyclerView mList;
+    HiRecyclerView mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         mTb = (Toolbar) findViewById(R.id.tb);
         mCtl = (CollapsingToolbarLayout) findViewById(R.id.ctl);
         mCl = (CoordinatorLayout) findViewById(R.id.cl);
-        mList = (YfListRecyclerView) findViewById(R.id.rv);
+        mList = (HiRecyclerView) findViewById(R.id.rv);
         initToolbar();
         init();
     }
@@ -65,7 +65,7 @@ public class MenuActivity extends AppCompatActivity {
         mList.setHasFixedSize(true);
         mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mList.setAdapter(adapter);
-        adapter.setOnItemClickListener(new YfListInterface.OnItemClickListener() {
+        adapter.setOnItemClickListener(new HiInterface.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Object o) {
                 if ("Recycler List Inside Recycler List".equals(o.toString())) {

@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
 import com.freedom.yefeng.yfrecyclerview.UnfoldLinearLayoutManager;
-import com.freedom.yefeng.yfrecyclerview.YfListAdapter;
-import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
-import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.HiListAdapter;
+import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class RcyInRcyOutAdapter extends YfListAdapter<String> {
+public class RcyInRcyOutAdapter extends HiListAdapter<String> {
 
 
     public RcyInRcyOutAdapter(ArrayList<String> data) {
@@ -35,7 +35,7 @@ public class RcyInRcyOutAdapter extends YfListAdapter<String> {
     @Override
     public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-        return new YfSimpleViewHolder(view);
+        return new HiViewHolder(view);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RcyInRcyOutAdapter extends YfListAdapter<String> {
     }
 
     private void showRecycler(ViewHolder holder, ArrayList<String> data) {
-        YfListRecyclerView list = holder.mList;
+        HiRecyclerView list = holder.mList;
         list.setHasFixedSize(true);
         UnfoldLinearLayoutManager layoutManager = new UnfoldLinearLayoutManager(
                 holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -59,12 +59,12 @@ public class RcyInRcyOutAdapter extends YfListAdapter<String> {
     private static final class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mText;
-        YfListRecyclerView mList;
+        HiRecyclerView mList;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mText = (TextView) itemView.findViewById(R.id.txt_adapter_item);
-            mList = (YfListRecyclerView) itemView.findViewById(R.id.recycler);
+            mList = (HiRecyclerView) itemView.findViewById(R.id.recycler);
         }
     }
 }

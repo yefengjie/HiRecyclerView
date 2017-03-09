@@ -12,23 +12,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.freedom.yefeng.yfrecyclerview.YfListInterface;
-import com.freedom.yefeng.yfrecyclerview.YfListMode;
-import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
-import com.freedom.yefeng.yfrecyclerview.YfLoadMoreListener;
+import com.freedom.yefeng.yfrecyclerview.HiInterface;
+import com.freedom.yefeng.yfrecyclerview.HiMode;
+import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
 
 import java.util.ArrayList;
 
-public class SampleActivity extends AppCompatActivity implements YfLoadMoreListener {
+public class SampleActivity extends AppCompatActivity implements HiInterface.OnLoadMoreListener {
 
-    private YfListRecyclerView mList;
+    private HiRecyclerView mList;
     private SimpleAdapter mAdapter;
     private ArrayList<String> mData = new ArrayList<String>();
 
     private int headerPosition = 0;
     private int footerPosition = 0;
-    private int mode = YfListMode.MODE_DATA;
+    private int mode = HiMode.MODE_DATA;
 
     private int mTotalDataCount = 50;
     private int mCurrentPage = 1;
@@ -80,7 +79,7 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
     }
 
     private void initList() {
-        mList = (YfListRecyclerView) findViewById(R.id.recycler);
+        mList = (HiRecyclerView) findViewById(R.id.recycler);
         mList.setHasFixedSize(true);
         mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         initAdapter();
@@ -122,38 +121,38 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
 
     private void initAdapter() {
         mAdapter = new SimpleAdapter(mData);
-        mAdapter.setOnItemClickListener(new YfListInterface.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new HiInterface.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Object o) {
                 showToast((String) o);
             }
         });
-        mAdapter.setOnItemLongClickListener(new YfListInterface.OnItemLongClickListener() {
+        mAdapter.setOnItemLongClickListener(new HiInterface.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View view, Object o) {
                 showToast(o + " long click");
             }
         });
-        mAdapter.setOnHeaderViewClickListener(new YfListInterface.OnHeaderViewClickListener() {
+        mAdapter.setOnHeaderViewClickListener(new HiInterface.OnHeaderViewClickListener() {
             @Override
             public void onHeaderViewClick(View view, Object o) {
                 showToast((String) o);
             }
         });
-        mAdapter.setOnFooterViewClickListener(new YfListInterface.OnFooterViewClickListener() {
+        mAdapter.setOnFooterViewClickListener(new HiInterface.OnFooterViewClickListener() {
             @Override
             public void onFooterViewClick(View view, Object o) {
                 showToast((String) o);
             }
         });
-        mAdapter.setOnEmptyViewClickListener(new YfListInterface.OnEmptyViewClickListener() {
+        mAdapter.setOnEmptyViewClickListener(new HiInterface.OnEmptyViewClickListener() {
             @Override
             public void onEmptyViewClick(View view) {
                 showToast("click empty view");
             }
         });
 
-        mAdapter.setOnErrorViewClickListener(new YfListInterface.OnErrorViewClickListener() {
+        mAdapter.setOnErrorViewClickListener(new HiInterface.OnErrorViewClickListener() {
             @Override
             public void onErrorViewClick(View view) {
                 showToast("click error view");
@@ -214,8 +213,8 @@ public class SampleActivity extends AppCompatActivity implements YfLoadMoreListe
                 return true;
             case R.id.action_change_mode:
                 mAdapter.changeMode(++mode);
-                if (mode > YfListMode.MODE_EMPTY) {
-                    mode = YfListMode.MODE_DATA;
+                if (mode > HiMode.MODE_EMPTY) {
+                    mode = HiMode.MODE_DATA;
                 }
                 return true;
             case R.id.action_clear_data:

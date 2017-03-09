@@ -6,16 +6,15 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
-
-import com.freedom.yefeng.yfrecyclerview.util.LogUtil;
 
 /**
  * Created by yefeng on 8/7/15.
  * github:yefengfreedom
  * this is a list view base on recycler view,with auto load more model,divider
  */
-public class YfListRecyclerView extends RecyclerView {
+public class HiRecyclerView extends RecyclerView {
 
     public static final int WRAP_CONTENT = -1;
 
@@ -25,15 +24,15 @@ public class YfListRecyclerView extends RecyclerView {
     private LinearLayoutManager mLayoutManager;
     private Adapter mAdapter;
 
-    public YfListRecyclerView(Context context) {
+    public HiRecyclerView(Context context) {
         super(context);
     }
 
-    public YfListRecyclerView(Context context, AttributeSet attrs) {
+    public HiRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public YfListRecyclerView(Context context, AttributeSet attrs, int defStyle) {
+    public HiRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -126,7 +125,7 @@ public class YfListRecyclerView extends RecyclerView {
      *
      * @param loadMoreListener load more listener
      */
-    public void enableAutoLoadMore(final YfLoadMoreListener loadMoreListener) {
+    public void enableAutoLoadMore(final HiInterface.OnLoadMoreListener loadMoreListener) {
         addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -139,7 +138,7 @@ public class YfListRecyclerView extends RecyclerView {
                 mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
                 if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
                     if (null != loadMoreListener) {
-                        LogUtil.d(TAG, "loadMore");
+                        Log.d(TAG, "loadMore");
                         loadMoreListener.loadMore();
                     }
                 }

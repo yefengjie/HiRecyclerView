@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.YfListAdapter;
-import com.freedom.yefeng.yfrecyclerview.YfSimpleViewHolder;
+import com.freedom.yefeng.yfrecyclerview.HiListAdapter;
+import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class RcyInRcyInsideAdapter extends YfListAdapter<String> {
+public class RcyInRcyInsideAdapter extends HiListAdapter<String> {
 
     public RcyInRcyInsideAdapter(ArrayList<String> data) {
         super(data);
@@ -31,7 +31,7 @@ public class RcyInRcyInsideAdapter extends YfListAdapter<String> {
     @Override
     public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-        return new YfSimpleViewHolder(view);
+        return new HiViewHolder(view);
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.freedom.yefeng.yfrecyclerview.YfListRecyclerView;
+import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.example.adapter.DemoAdapter;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class SampleAdapterDemoActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        YfListRecyclerView mList = (YfListRecyclerView) findViewById(R.id.recycler);
+        HiRecyclerView mList = (HiRecyclerView) findViewById(R.id.recycler);
         mList.setHasFixedSize(true);
         mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 

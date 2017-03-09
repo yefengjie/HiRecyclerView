@@ -6,7 +6,7 @@ import android.view.View;
  * Created by yefeng on 7/24/15.
  * github:yefengfreedom
  */
-public class YfListInterface {
+public class HiInterface {
 
     /**
      * click recycler view item
@@ -52,5 +52,12 @@ public class YfListInterface {
      */
     public interface OnFooterViewClickListener<T> {
         void onFooterViewClick(View view, T t);
+    }
+
+    /**
+     * load more
+     */
+    public interface OnLoadMoreListener {
+        void loadMore();
     }
 }
