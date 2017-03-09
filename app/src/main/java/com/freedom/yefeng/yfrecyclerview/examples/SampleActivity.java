@@ -223,7 +223,7 @@ public class SampleActivity extends AppCompatActivity implements HiInterface.OnL
                 footerPosition = 0;
                 mAdapter.removeAllHeader();
                 mAdapter.removeAllFooters();
-//                mAdapter.setData(null);
+                mAdapter.setData(null);
                 return true;
             case R.id.action_set_data:
                 mCurrentPage = 1;

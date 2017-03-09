@@ -75,24 +75,26 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
         this.mToolBarHeight = toolBarHeight;
     }
 
-    public void setData(ArrayList<T> data) {
-        setData(data, HiMode.MODE_DATA);
-    }
-
-    public void setData(ArrayList<T> data, int mode) {
-        this.mData = null == data ? new ArrayList<T>() : data;
-        this.mMode = mData.isEmpty() ? HiMode.MODE_EMPTY : mode;
-        if (mData.isEmpty()) {
-            notifyDataSetChanged();
+    public void setData(final ArrayList<T> data) {
+        if (data == null || data.isEmpty()) {
+            this.mData = new ArrayList<T>();
+            this.mMode = HiMode.MODE_EMPTY;
+            this.notifyDataSetChanged();
         } else {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    notifyItemRangeInserted(0, mData.size() - 1);
-                }
-            });
+//            this.mData = new ArrayList<T>();
+//            this.mMode = HiMode.MODE_DATA;
+//            this.notifyDataSetChanged();
+//            this.mData = data;
+//            mHandler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    notifyItemRangeInserted(mHeaders.size(), mData.size());
+//                }
+//            });
+            this.mData = data;
+            this.mMode = HiMode.MODE_DATA;
+            this.notifyDataSetChanged();
         }
-        this.notifyDataSetChanged();
     }
 
     public void addData(final ArrayList<T> data) {
