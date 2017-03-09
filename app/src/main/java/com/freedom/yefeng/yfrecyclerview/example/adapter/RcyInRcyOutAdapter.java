@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
-import com.freedom.yefeng.yfrecyclerview.UnfoldLinearLayoutManager;
 import com.freedom.yefeng.yfrecyclerview.HiListAdapter;
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
+import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
 import com.freedom.yefeng.yfrecyclerview.example.R;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class RcyInRcyOutAdapter extends HiListAdapter<String> {
     private void showRecycler(ViewHolder holder, ArrayList<String> data) {
         HiRecyclerView list = holder.mList;
         list.setHasFixedSize(true);
-        UnfoldLinearLayoutManager layoutManager = new UnfoldLinearLayoutManager(
+        LinearLayoutManager layoutManager = new LinearLayoutManager(
                 holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
         list.setLayoutManager(layoutManager);
         RcyInRcyInsideAdapter adapter = new RcyInRcyInsideAdapter(data);
