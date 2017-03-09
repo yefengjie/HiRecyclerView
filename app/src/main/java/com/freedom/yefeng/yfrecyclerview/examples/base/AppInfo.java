@@ -1,11 +1,11 @@
-package com.freedom.yefeng.yfrecyclerview.example.base;
+package com.freedom.yefeng.yfrecyclerview.examples.base;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 import android.util.DisplayMetrics;
 
-import com.freedom.yefeng.yfrecyclerview.example.R;
+import com.freedom.yefeng.yfrecyclerview.examples.R;
 
 
 /**

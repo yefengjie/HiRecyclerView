@@ -1,4 +1,4 @@
-package com.freedom.yefeng.yfrecyclerview.example.base;
+package com.freedom.yefeng.yfrecyclerview.examples.base;
 
 import android.app.Application;
 
@@ -7,7 +7,7 @@ import android.app.Application;
  * Created by yee on 11/1/13.
  * <p/>
  */
-public class AppApplication extends Application {
+public class App extends Application {
 
     @Override
     public void onCreate() {

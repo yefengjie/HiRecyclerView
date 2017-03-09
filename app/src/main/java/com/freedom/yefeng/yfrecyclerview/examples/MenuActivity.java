@@ -1,4 +1,4 @@
-package com.freedom.yefeng.yfrecyclerview.example;
+package com.freedom.yefeng.yfrecyclerview.examples;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,8 +15,8 @@ import android.widget.ImageView;
 
 import com.freedom.yefeng.yfrecyclerview.HiInterface;
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
-import com.freedom.yefeng.yfrecyclerview.example.adapter.MenuAdapter;
-import com.freedom.yefeng.yfrecyclerview.example.base.AppInfo;
+import com.freedom.yefeng.yfrecyclerview.examples.adapter.MenuAdapter;
+import com.freedom.yefeng.yfrecyclerview.examples.base.AppInfo;
 
 import java.util.ArrayList;
 

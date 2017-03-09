@@ -1,4 +1,4 @@
-package com.freedom.yefeng.yfrecyclerview.example.adapter;
+package com.freedom.yefeng.yfrecyclerview.examples.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.freedom.yefeng.yfrecyclerview.HiInsideListAdapter;
-import com.freedom.yefeng.yfrecyclerview.HiListAdapter;
 import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
-import com.freedom.yefeng.yfrecyclerview.example.R;
+import com.freedom.yefeng.yfrecyclerview.examples.R;
 
 import java.util.ArrayList;
 

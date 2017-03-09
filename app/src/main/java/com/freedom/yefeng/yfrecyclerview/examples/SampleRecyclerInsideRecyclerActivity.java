@@ -1,4 +1,4 @@
-package com.freedom.yefeng.yfrecyclerview.example;
+package com.freedom.yefeng.yfrecyclerview.examples;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -8,28 +8,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
-import com.freedom.yefeng.yfrecyclerview.example.adapter.DemoAdapter;
+import com.freedom.yefeng.yfrecyclerview.examples.adapter.RcyInRcyOutAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by yefeng on 8/5/15.
- * github:yefengfreedom
- */
-public class SampleAdapterDemoActivity extends AppCompatActivity {
+@SuppressWarnings("unchecked")
+public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample_adapter_demo);
+        setContentView(R.layout.activity_recycler_inside_recycler);
 
         ArrayList<String> mData = new ArrayList<String>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             mData.add("item  " + i);
         }
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.tb);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
         if (null != ab) {
@@ -37,12 +35,12 @@ public class SampleAdapterDemoActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        HiRecyclerView mList = (HiRecyclerView) findViewById(R.id.recycler);
-        mList.setHasFixedSize(true);
-        mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        HiRecyclerView list = (HiRecyclerView) findViewById(R.id.recycler);
+        list.setHasFixedSize(true);
+        list.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        DemoAdapter adapter = new DemoAdapter(mData);
-        mList.setAdapter(adapter);
+        RcyInRcyOutAdapter adapter = new RcyInRcyOutAdapter(mData);
+        list.setAdapter(adapter);
     }
 
     @Override

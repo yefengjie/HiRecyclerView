@@ -1,4 +1,4 @@
-package com.freedom.yefeng.yfrecyclerview.example;
+package com.freedom.yefeng.yfrecyclerview.examples;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.freedom.yefeng.yfrecyclerview.HiInterface;
 import com.freedom.yefeng.yfrecyclerview.HiMode;
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
-import com.freedom.yefeng.yfrecyclerview.example.adapter.SimpleAdapter;
+import com.freedom.yefeng.yfrecyclerview.examples.adapter.SimpleAdapter;
 
 import java.util.ArrayList;
 

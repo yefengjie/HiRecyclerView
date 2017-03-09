@@ -5,11 +5,11 @@ android {
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        applicationId "com.freedom.yefeng.yfrecyclerview.example"
+        applicationId "com.freedom.yefeng.yfrecyclerview.examples"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 101
+        versionName "1.0.1"
     }
     buildTypes {
         release {
