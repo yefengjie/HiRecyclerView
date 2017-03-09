@@ -20,6 +20,11 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
     private static final String TAG = "HiListAdapter";
 
     /**
+     * handler
+     */
+    private Handler mHandler = new Handler();
+
+    /**
      * data set
      */
     public ArrayList<T> mData;
@@ -77,16 +82,31 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
     public void setData(ArrayList<T> data, int mode) {
         this.mData = null == data ? new ArrayList<T>() : data;
         this.mMode = mData.isEmpty() ? HiMode.MODE_EMPTY : mode;
+        if (mData.isEmpty()) {
+            notifyDataSetChanged();
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyItemRangeInserted(0, mData.size() - 1);
+                }
+            });
+        }
         this.notifyDataSetChanged();
     }
 
-    public void addData(ArrayList<T> data) {
+    public void addData(final ArrayList<T> data) {
         if (null == data || data.isEmpty()) {
             return;
         }
-        int startPosition = mData.size() + mHeaders.size();
+        final int startPosition = mData.size() + mHeaders.size();
         this.mData.addAll(data);
-        this.notifyItemRangeInserted(startPosition, data.size());
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                notifyItemRangeInserted(startPosition, data.size());
+            }
+        });
     }
 
     public ArrayList<T> getData() {
@@ -370,8 +390,13 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
         }
         if (!mHeaders.contains(header)) {
             mHeaders.add(header);
-            //animate
-            notifyItemInserted(mHeaders.size() - 1);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //animate
+                    notifyItemInserted(mHeaders.size() - 1);
+                }
+            });
         }
     }
 
@@ -382,10 +407,15 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeHeader(Object header) {
         if (mHeaders.contains(header)) {
-            int position = mHeaders.indexOf(header);
+            final int position = mHeaders.indexOf(header);
             mHeaders.remove(position);
-            //animate
-            notifyItemRemoved(position);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //animate
+                    notifyItemRemoved(position);
+                }
+            });
         }
     }
 
@@ -394,10 +424,15 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
      *
      * @param position position
      */
-    public void removeHeader(int position) {
+    public void removeHeader(final int position) {
         if (mHeaders.size() > 0 && position < mHeaders.size()) {
             mHeaders.remove(position);
-            notifyItemRemoved(position);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyItemRemoved(position);
+                }
+            });
         }
     }
 
@@ -406,9 +441,14 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeAllHeader() {
         if (mHeaders.size() > 0) {
-            notifyItemRangeRemoved(0, mHeaders.size());
+            final int headSize = mHeaders.size();
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyItemRangeRemoved(0, headSize);
+                }
+            });
             mHeaders.clear();
-            notifyDataSetChanged();
         }
     }
 
@@ -424,8 +464,13 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
         }
         if (!mFooters.contains(footer)) {
             mFooters.add(footer);
-            //animate
-            notifyItemInserted(mHeaders.size() + mData.size() + mFooters.size() - 1);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //animate
+                    notifyItemInserted(mHeaders.size() + mData.size() + mFooters.size() - 1);
+                }
+            });
         }
     }
 
@@ -436,10 +481,15 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeFooter(Object footer) {
         if (mFooters.contains(footer)) {
-            int position = mFooters.indexOf(footer);
+            final int position = mFooters.indexOf(footer);
             mFooters.remove(position);
-            //animate
-            notifyItemRemoved(mHeaders.size() + mData.size() + position);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //animate
+                    notifyItemRemoved(mHeaders.size() + mData.size() + position);
+                }
+            });
         }
     }
 
@@ -448,11 +498,16 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
      *
      * @param position position
      */
-    public void removeFooter(int position) {
+    public void removeFooter(final int position) {
         if (mFooters.size() > 0 && position < mFooters.size()) {
             mFooters.remove(position);
-            //animate
-            notifyItemRemoved(mHeaders.size() + mData.size() + position);
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //animate
+                    notifyItemRemoved(mHeaders.size() + mData.size() + position);
+                }
+            });
         }
     }
 
@@ -461,9 +516,15 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeAllFooters() {
         if (mFooters.size() > 0) {
-            notifyItemRangeChanged(0, mFooters.size());
+            final int size = mFooters.size();
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyItemRangeChanged(0, size);
+                    notifyItemRangeRemoved(mHeaders.size() + mData.size(), size);
+                }
+            });
             mFooters.clear();
-            notifyDataSetChanged();
         }
     }
 }
