@@ -28,5 +28,5 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:recyclerview-v7:25.2.0'
 //    compile 'com.yefeng:yf_list_recycler_view:1.1.0'
-    compile project(':yf_list_recycler_view')
+    compile project(':HiRecyclerView')
 }

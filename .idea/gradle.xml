@@ -10,8 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/HiRecyclerView" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/yf_list_recycler_view" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

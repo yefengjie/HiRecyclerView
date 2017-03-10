@@ -116,6 +116,6 @@
     <orderEntry type="library" exported="" name="support-core-utils-25.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-25.2.0" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-25.2.0" level="project" />
-    <orderEntry type="module" module-name="yf_list_recycler_view" exported="" />
+    <orderEntry type="module" module-name="HiRecyclerView" exported="" />
   </component>
 </module>
