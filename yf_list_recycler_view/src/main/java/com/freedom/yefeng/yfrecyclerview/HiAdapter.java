@@ -46,7 +46,7 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
     /**
      * handler
      */
-    private Handler mHandler = new Handler();
+    public Handler mHandler = new Handler();
 
     /**
      * is add footer
