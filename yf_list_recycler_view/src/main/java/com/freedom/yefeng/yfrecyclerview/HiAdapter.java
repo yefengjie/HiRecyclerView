@@ -96,11 +96,11 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
         if (null == data || data.isEmpty()) {
             return;
         }
-        final int startPosition = mData.size() + mHeaders.size();
-        this.mData.addAll(data);
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                int startPosition = mData.size() + mHeaders.size();
+                mData.addAll(data);
                 notifyItemRangeInserted(startPosition, data.size());
             }
         });
@@ -380,16 +380,16 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      *
      * @param header header
      */
-    public void addHeader(Object header) {
+    public void addHeader(final Object header) {
         if (mMode != HiMode.MODE_DATA) {
             Log.e(TAG, "error: you can not add header or footer while you are not in data mode");
             return;
         }
         if (!mHeaders.contains(header)) {
-            mHeaders.add(header);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    mHeaders.add(header);
                     //animate
                     notifyItemInserted(mHeaders.size() - 1);
                 }
@@ -402,13 +402,13 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      *
      * @param header header
      */
-    public void removeHeader(Object header) {
+    public void removeHeader(final Object header) {
         if (mHeaders.contains(header)) {
-            final int position = mHeaders.indexOf(header);
-            mHeaders.remove(position);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    int position = mHeaders.indexOf(header);
+                    mHeaders.remove(position);
                     //animate
                     notifyItemRemoved(position);
                 }
@@ -423,10 +423,10 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeHeader(final int position) {
         if (mHeaders.size() > 0 && position < mHeaders.size()) {
-            mHeaders.remove(position);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    mHeaders.remove(position);
                     notifyItemRemoved(position);
                 }
             });
@@ -438,14 +438,14 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeAllHeader() {
         if (mHeaders.size() > 0) {
-            final int headSize = mHeaders.size();
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    int headSize = mHeaders.size();
                     notifyItemRangeRemoved(0, headSize);
+                    mHeaders.clear();
                 }
             });
-            mHeaders.clear();
         }
     }
 
@@ -454,17 +454,17 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      *
      * @param footer footer
      */
-    public void addFooter(Object footer) {
+    public void addFooter(final Object footer) {
         if (mMode != HiMode.MODE_DATA) {
             Log.e(TAG, "error: you can not add header or footer while you are not in data mode");
             return;
         }
         if (!mFooters.contains(footer)) {
             mIsAddingFooter = true;
-            mFooters.add(footer);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    mFooters.add(footer);
                     //animate
                     notifyItemInserted(mHeaders.size() + mData.size() + mFooters.size() - 1);
                     mIsAddingFooter = false;
@@ -478,13 +478,13 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      *
      * @param footer footer view
      */
-    public void removeFooter(Object footer) {
+    public void removeFooter(final Object footer) {
         if (mFooters.contains(footer)) {
-            final int position = mFooters.indexOf(footer);
-            mFooters.remove(position);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    int position = mFooters.indexOf(footer);
+                    mFooters.remove(position);
                     //animate
                     notifyItemRemoved(mHeaders.size() + mData.size() + position);
                 }
@@ -499,10 +499,10 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeFooter(final int position) {
         if (mFooters.size() > 0 && position < mFooters.size()) {
-            mFooters.remove(position);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    mFooters.remove(position);
                     //animate
                     notifyItemRemoved(mHeaders.size() + mData.size() + position);
                 }
@@ -515,10 +515,10 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
      */
     public void removeAllFooters() {
         if (mFooters.size() > 0) {
-            final int size = mFooters.size();
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    int size = mFooters.size();
                     notifyItemRangeChanged(0, size);
                     notifyItemRangeRemoved(mHeaders.size() + mData.size(), size);
                 }
