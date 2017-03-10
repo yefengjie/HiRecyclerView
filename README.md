@@ -21,7 +21,7 @@ a powerful list recycler view to replace list view, with function belows:
 
 include libs in your build.gradle
 
-or see it in maven :https://bintray.com/yefengfreedom/maven/yflistrecyclerview/view
+or see it in maven :https://bintray.com/yefengfreedom/maven/hirecyclerview
 
 ```Java
     compile 'com.android.support:recyclerview-v7:22.2.0'
@@ -34,7 +34,7 @@ or see it in maven :https://bintray.com/yefengfreedom/maven/yflistrecyclerview/v
 new a RecyclerViewAdapter, and override the method whitch you want to use, just like SampleActivity do...
 
 ```Java
-public class DemoAdapter extends YfListAdapter<String> {
+public class DemoAdapter extends HiAdapter<String> {
 
     public DemoAdapter(ArrayList<String> data) {
         super(data);
@@ -49,7 +49,7 @@ public class DemoAdapter extends YfListAdapter<String> {
     @Override
     public RecyclerView.ViewHolder onCreateEmptyViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_empty_material, parent, false);
-        return new YfSimpleViewHolder(view);
+        return new HiViewHolder(view);
     }
 
     @Override
@@ -80,7 +80,7 @@ mRecycler.setAdapter(new DemoAdapter(list_data));
 ### how to enable load more
 
 ```Java
-    mList.enableAutoLoadMore(new YfLoadMoreListener() {
+    mList.enableAutoLoadMore(new HiInterface.OnLoadMoreListener() {
                 @Override
                 public void loadMore() {
 
@@ -90,11 +90,14 @@ mRecycler.setAdapter(new DemoAdapter(list_data));
 
 ### how to use recycler view inside recycler view
 
-use ExpansionLinearLayoutManager to replace LinearLayoutManager
+use HiInsideAdapter to replace HiAdapter
 
 ```Java
-ExpansionLinearLayoutManager layoutManager = new ExpansionLinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-recyclerView.setLayoutManager(layoutManager);
+
+public class RcyInRcyInsideAdapter extends HiInsideAdapter<String>{
+
+}
+
 ```
 
 ### change display mode(show loading data,show data,show empty,show error)
@@ -178,4 +181,6 @@ call adapter's addHeader or addFooter method
 #### 15-8-5   add recycler view adapter demo
 
 #### 15-8-7   move divider and load more method to library
+
+#### 17-3-10  update some feature, and rename to hi recycler view
 
