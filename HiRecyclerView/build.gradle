@@ -4,19 +4,19 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.1.0"
+version = "1.2.0"
 
 
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    resourcePrefix "yflrv_"
+    resourcePrefix "hirv_"
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 110
+        versionCode 120
         versionName version
     }
     buildTypes {
@@ -46,7 +46,7 @@ install {
         pom {
             project {
                 packaging 'aar'
-                name 'Yf List Cycycler View For Android'
+                name 'Hi Recycler View For Android'
                 url siteUrl
                 licenses {
                     license {
@@ -101,7 +101,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "yflistrecyclerview"                // project name in jcenter
+        name = "hirecyclerview"                // project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
