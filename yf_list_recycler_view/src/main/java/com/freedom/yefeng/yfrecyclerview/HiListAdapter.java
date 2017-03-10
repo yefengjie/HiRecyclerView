@@ -20,11 +20,6 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
     private static final String TAG = "HiListAdapter";
 
     /**
-     * handler
-     */
-    private Handler mHandler = new Handler();
-
-    /**
      * data set
      */
     public ArrayList<T> mData;
@@ -47,6 +42,12 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
     //because our toobar is ThemeOverlay, so we should minus toolbar height,
     //you can use AppBarLayout.getMeasuredHeight method to get toobar height.
     protected int mToolBarHeight;
+
+    /**
+     * handler
+     */
+    private Handler mHandler=new Handler();
+
 
     private HiInterface.OnItemClickListener mOnItemClickListener;
     private HiInterface.OnItemLongClickListener mOnItemLongClickListener;
@@ -75,26 +76,15 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
         this.mToolBarHeight = toolBarHeight;
     }
 
-    public void setData(final ArrayList<T> data) {
+    public void setData(ArrayList<T> data) {
         if (data == null || data.isEmpty()) {
             this.mData = new ArrayList<T>();
             this.mMode = HiMode.MODE_EMPTY;
-            this.notifyDataSetChanged();
         } else {
-//            this.mData = new ArrayList<T>();
-//            this.mMode = HiMode.MODE_DATA;
-//            this.notifyDataSetChanged();
-//            this.mData = data;
-//            mHandler.post(new Runnable() {
-//                @Override
-//                public void run() {
-//                    notifyItemRangeInserted(mHeaders.size(), mData.size());
-//                }
-//            });
             this.mData = data;
             this.mMode = HiMode.MODE_DATA;
-            this.notifyDataSetChanged();
         }
+        this.notifyDataSetChanged();
     }
 
     public void addData(final ArrayList<T> data) {
