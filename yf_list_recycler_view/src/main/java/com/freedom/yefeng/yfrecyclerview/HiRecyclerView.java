@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -110,7 +109,7 @@ public class HiRecyclerView extends RecyclerView {
 
     @Override
     public void setAdapter(Adapter adapter) {
-        if(!(adapter instanceof HiAdapter)){
+        if (!(adapter instanceof HiAdapter)) {
             throw new IllegalArgumentException("please use HiAdapter to instead of Adapter");
         }
         this.mAdapter = (HiAdapter) adapter;
@@ -133,7 +132,7 @@ public class HiRecyclerView extends RecyclerView {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (null == mLayoutManager || null == mAdapter||mAdapter.mIsAddingFooter) {
+                if (null == mLayoutManager || null == mAdapter || mAdapter.mIsAddingFooter) {
                     return;
                 }
                 mVisibleItemCount = mLayoutManager.getChildCount();
@@ -141,7 +140,6 @@ public class HiRecyclerView extends RecyclerView {
                 mFirstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
                 if ((mVisibleItemCount + mFirstVisibleItemPosition) >= mTotalItemCount) {
                     if (null != loadMoreListener) {
-                        Log.d(TAG, "loadMore");
                         loadMoreListener.loadMore();
                     }
                 }
