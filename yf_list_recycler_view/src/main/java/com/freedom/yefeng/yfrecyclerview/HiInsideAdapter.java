@@ -11,20 +11,20 @@ import java.util.ArrayList;
  * Created by yefeng on 09/03/2017.
  */
 
-public abstract class HiInsideListAdapter<T> extends HiListAdapter<T> {
-    public HiInsideListAdapter(ArrayList<T> data) {
+public abstract class HiInsideAdapter<T> extends HiAdapter<T> {
+    public HiInsideAdapter(ArrayList<T> data) {
         super(data);
     }
 
-    public HiInsideListAdapter(ArrayList<T> data, int mode) {
+    public HiInsideAdapter(ArrayList<T> data, int mode) {
         super(data, mode);
     }
 
-    public HiInsideListAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
+    public HiInsideAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
         super(data, mode, toolBarHeight);
     }
 
-    public HiInsideListAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
+    public HiInsideAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
         super(data, headers, footers, mode, toolBarHeight);
     }
 

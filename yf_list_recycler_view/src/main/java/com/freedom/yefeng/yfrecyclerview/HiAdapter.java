@@ -15,9 +15,9 @@ import java.util.ArrayList;
  * if you want to enable each views, you should Override each onCreateViewHolder method and onBindViewHolder method
  */
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
+public abstract class HiAdapter<T> extends RecyclerView.Adapter {
 
-    private static final String TAG = "HiListAdapter";
+    private static final String TAG = "HiAdapter";
 
     /**
      * data set
@@ -56,19 +56,19 @@ public abstract class HiListAdapter<T> extends RecyclerView.Adapter {
     private HiInterface.OnHeaderViewClickListener mOnHeaderViewClickListener;
     private HiInterface.OnFooterViewClickListener mOnFooterViewClickListener;
 
-    public HiListAdapter(ArrayList<T> data) {
+    public HiAdapter(ArrayList<T> data) {
         this(data, HiMode.MODE_DATA, 0);
     }
 
-    public HiListAdapter(ArrayList<T> data, int mode) {
+    public HiAdapter(ArrayList<T> data, int mode) {
         this(data, mode, 0);
     }
 
-    public HiListAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
+    public HiAdapter(ArrayList<T> data, int mode, int toolBarHeight) {
         this(data, null, null, mode, toolBarHeight);
     }
 
-    public HiListAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
+    public HiAdapter(ArrayList<T> data, ArrayList<Object> headers, ArrayList<Object> footers, int mode, int toolBarHeight) {
         this.mData = null == data ? new ArrayList<T>() : data;
         this.mHeaders = null == headers ? new ArrayList<Object>() : headers;
         this.mFooters = null == footers ? new ArrayList<Object>() : footers;

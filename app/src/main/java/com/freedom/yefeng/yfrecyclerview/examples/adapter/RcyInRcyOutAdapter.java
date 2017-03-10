@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.HiListAdapter;
+import com.freedom.yefeng.yfrecyclerview.HiAdapter;
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
 import com.freedom.yefeng.yfrecyclerview.examples.R;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class RcyInRcyOutAdapter extends HiListAdapter<String> {
+public class RcyInRcyOutAdapter extends HiAdapter<String> {
 
 
     public RcyInRcyOutAdapter(ArrayList<String> data) {

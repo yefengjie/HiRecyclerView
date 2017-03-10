@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.freedom.yefeng.yfrecyclerview.HiInsideListAdapter;
+import com.freedom.yefeng.yfrecyclerview.HiInsideAdapter;
 import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
 import com.freedom.yefeng.yfrecyclerview.examples.R;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by yefeng on 8/5/15.
  * github:yefengfreedom
  */
-public class RcyInRcyInsideAdapter extends HiInsideListAdapter<String> {
+public class RcyInRcyInsideAdapter extends HiInsideAdapter<String> {
 
     public RcyInRcyInsideAdapter(ArrayList<String> data) {
         super(data);
