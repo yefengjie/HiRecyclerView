@@ -46,7 +46,12 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
     /**
      * handler
      */
-    private Handler mHandler=new Handler();
+    private Handler mHandler = new Handler();
+
+    /**
+     * is add footer
+     */
+    public boolean mIsAddingFooter = false;
 
 
     private HiInterface.OnItemClickListener mOnItemClickListener;
@@ -455,12 +460,14 @@ public abstract class HiAdapter<T> extends RecyclerView.Adapter {
             return;
         }
         if (!mFooters.contains(footer)) {
+            mIsAddingFooter = true;
             mFooters.add(footer);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     //animate
                     notifyItemInserted(mHeaders.size() + mData.size() + mFooters.size() - 1);
+                    mIsAddingFooter = false;
                 }
             });
         }

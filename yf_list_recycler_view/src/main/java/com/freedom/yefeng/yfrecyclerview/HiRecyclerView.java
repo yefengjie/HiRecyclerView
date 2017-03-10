@@ -22,7 +22,7 @@ public class HiRecyclerView extends RecyclerView {
 
     private int mVisibleItemCount, mTotalItemCount, mFirstVisibleItemPosition;
     private LinearLayoutManager mLayoutManager;
-    private Adapter mAdapter;
+    private HiAdapter mAdapter;
 
     public HiRecyclerView(Context context) {
         super(context);
@@ -110,7 +110,10 @@ public class HiRecyclerView extends RecyclerView {
 
     @Override
     public void setAdapter(Adapter adapter) {
-        this.mAdapter = adapter;
+        if(!(adapter instanceof HiAdapter)){
+            throw new IllegalArgumentException("please use HiAdapter to instead of Adapter");
+        }
+        this.mAdapter = (HiAdapter) adapter;
         super.setAdapter(this.mAdapter);
     }
 
@@ -130,7 +133,7 @@ public class HiRecyclerView extends RecyclerView {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (null == mLayoutManager || null == mAdapter) {
+                if (null == mLayoutManager || null == mAdapter||mAdapter.mIsAddingFooter) {
                     return;
                 }
                 mVisibleItemCount = mLayoutManager.getChildCount();
