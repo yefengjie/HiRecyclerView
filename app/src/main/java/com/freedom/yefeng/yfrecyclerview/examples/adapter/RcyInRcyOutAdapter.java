@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.freedom.yefeng.yfrecyclerview.HiAdapter;
+import com.freedom.yefeng.yfrecyclerview.HiDoNotResponseEventRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.HiViewHolder;
 import com.freedom.yefeng.yfrecyclerview.examples.R;
@@ -58,12 +59,12 @@ public class RcyInRcyOutAdapter extends HiAdapter<String> {
     private static final class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mText;
-        HiRecyclerView mList;
+        HiDoNotResponseEventRecyclerView mList;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mText = (TextView) itemView.findViewById(R.id.txt_adapter_item);
-            mList = (HiRecyclerView) itemView.findViewById(R.id.recycler);
+            mList = (HiDoNotResponseEventRecyclerView) itemView.findViewById(R.id.recycler);
         }
     }
 }

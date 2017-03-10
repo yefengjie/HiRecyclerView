@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
+import com.freedom.yefeng.yfrecyclerview.HiInterface;
 import com.freedom.yefeng.yfrecyclerview.HiRecyclerView;
 import com.freedom.yefeng.yfrecyclerview.examples.adapter.RcyInRcyOutAdapter;
 
@@ -41,6 +44,12 @@ public class SampleRecyclerInsideRecyclerActivity extends AppCompatActivity {
 
         RcyInRcyOutAdapter adapter = new RcyInRcyOutAdapter(mData);
         list.setAdapter(adapter);
+        adapter.setOnItemClickListener(new HiInterface.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Object o) {
+                Toast.makeText(SampleRecyclerInsideRecyclerActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
@@ -11,13 +10,13 @@
         android:layout_height="48dp"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"/>
+        android:paddingRight="16dp" />
 
-    <com.freedom.yefeng.yfrecyclerview.HiRecyclerView
+    <com.freedom.yefeng.yfrecyclerview.HiDoNotResponseEventRecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_light"
         android:paddingLeft="@dimen/default_ui_margin"
-        android:paddingRight="@dimen/default_ui_margin"/>
+        android:paddingRight="@dimen/default_ui_margin" />
 </LinearLayout>
