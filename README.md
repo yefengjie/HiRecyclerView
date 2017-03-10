@@ -24,8 +24,7 @@ include libs in your build.gradle
 or see it in maven :https://bintray.com/yefengfreedom/maven/hirecyclerview
 
 ```Java
-    compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile 'com.yefeng:yf_list_recycler_view:1.1.0'
+    compile 'com.yefeng:HiRecyclerView:1.2.0'
 ```
 
 
