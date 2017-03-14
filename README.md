@@ -91,6 +91,12 @@ mRecycler.setAdapter(new DemoAdapter(list_data));
 
 use HiInsideAdapter to replace HiAdapter
 
+!!!!!!!! notice !!!!!!!!
+
+there is a bug in HiInsideAdapter, when your text view has multi-line, it will display only one line
+
+I'll fix it one day !!!
+
 ```Java
 
 public class RcyInRcyInsideAdapter extends HiInsideAdapter<String>{
